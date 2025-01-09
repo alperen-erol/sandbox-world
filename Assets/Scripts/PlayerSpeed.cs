@@ -6,7 +6,7 @@ public class PlayerSpeed : MonoBehaviour
     [SerializeField] TMP_Text speedText;
     [SerializeField] Rigidbody rb;
 
-    float speed;
+    public float speed;
 
     private void FixedUpdate()
     {
@@ -16,5 +16,8 @@ public class PlayerSpeed : MonoBehaviour
 
         // Display the speed
         speedText.text = speed.ToString("F2");
+
     }
+
+
 }
