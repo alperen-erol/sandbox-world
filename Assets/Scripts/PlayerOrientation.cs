@@ -8,7 +8,7 @@ public class PlayerOrientation : MonoBehaviour
     float yRotation;
     Quaternion targetRotation;
 
-    private void LateUpdate()
+    private void Update()
     {
         yRotation = cameraTransform.eulerAngles.y;
         targetRotation = Quaternion.Euler(0f, yRotation, 0f);
