@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovementAdvanced : MonoBehaviour
@@ -54,6 +55,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     Rigidbody rb;
 
+    PlayerSpeed ps;
+
     public MovementState state;
     public enum MovementState
     {
@@ -62,9 +65,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
         crouching,
         sliding,
         wallrunning,
+        freeze,
         air
     }
 
+    public bool activeGrapple;
+    public bool freeze;
     public bool sliding;
     public bool wallrunning;
 
@@ -72,6 +78,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        ps = GetComponent<PlayerSpeed>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         readyToJump = true;
@@ -89,7 +96,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         StateHandler();
 
         // handle drag
-        if (grounded)
+        if (grounded && !activeGrapple)
             rb.linearDamping = groundDrag;
         else
             rb.linearDamping = 0;
@@ -131,7 +138,14 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void StateHandler()
     {
-        if (wallrunning)
+
+        if (freeze)
+        {
+            state = MovementState.freeze;
+            moveSpeed = 0;
+            rb.linearVelocity = Vector3.zero;
+        }
+        else if (wallrunning)
         {
             state = MovementState.wallrunning;
             desiredMoveSpeed = wallRunSpeed;
@@ -219,6 +233,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void MovePlayer()
     {
+        if (activeGrapple) return;
+
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -245,6 +261,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void SpeedControl()
     {
+        /* if (activeGrapple) return; */
+
         // limiting speed on slope
         if (OnSlope() && !exitingSlope)
         {
@@ -296,5 +314,53 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
         return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
+    }
+
+    private bool enableMovementOnNextTouch;
+
+    public void JumpToPosition(Vector3 targetposition, float trajectoryHeight)
+    {
+        activeGrapple = true;
+        velocityToSet = CalculateJumpVelocity(transform.position, targetposition, trajectoryHeight);
+        Invoke(nameof(setVelocity), 0.1f);
+        Invoke(nameof(ResetRestrictions), 0.2f);
+    }
+
+    private Vector3 velocityToSet;
+
+    private void setVelocity()
+    {
+        enableMovementOnNextTouch = true;
+        rb.linearVelocity = velocityToSet;
+    }
+
+    public void ResetRestrictions()
+    {
+        activeGrapple = false;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestrictions();
+        }
+        GetComponent<Grappling>().StopGrapple();
+    }
+
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
+            + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
+
+        Vector3 playerSpeed = ps.ReturnVelocity().normalized * velocityXZ.magnitude;
+
+        return velocityXZ * 50 + Vector3.up * 20;
     }
 }

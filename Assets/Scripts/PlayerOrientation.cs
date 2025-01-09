@@ -13,6 +13,5 @@ public class PlayerOrientation : MonoBehaviour
         yRotation = cameraTransform.eulerAngles.y;
         targetRotation = Quaternion.Euler(0f, yRotation, 0f);
         rb.MoveRotation(targetRotation);
-        Debug.Log("player rotation" + targetRotation);
     }
 }
