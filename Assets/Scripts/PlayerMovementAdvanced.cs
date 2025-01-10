@@ -13,6 +13,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
     public float wallRunSpeed;
+    public float swingSpeed;
 
     public float speedIncreaseMultiplier;
     public float slopeIncreaseMultiplier;
@@ -66,13 +67,17 @@ public class PlayerMovementAdvanced : MonoBehaviour
         sliding,
         wallrunning,
         freeze,
+        swinging,
+        standingStill,
         air
     }
 
+    public bool standingStill;
     public bool activeGrapple;
     public bool freeze;
     public bool sliding;
     public bool wallrunning;
+    public bool swinging;
 
     private void Start()
     {
@@ -89,7 +94,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
+        grounded = Physics.BoxCast(transform.position, new Vector3(0.5f, 0.1f, 0.5f), Vector3.down, out RaycastHit hit, Quaternion.identity, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -138,8 +143,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void StateHandler()
     {
+        if (swinging)
+        {
+            state = MovementState.swinging;
+            desiredMoveSpeed = swingSpeed;
+        }
 
-        if (freeze)
+        else if (freeze)
         {
             state = MovementState.freeze;
             moveSpeed = 0;
@@ -361,6 +371,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
         Vector3 playerSpeed = ps.ReturnVelocity().normalized * velocityXZ.magnitude;
 
-        return velocityXZ * 50 + Vector3.up * 20;
+        return velocityXZ * 500 + Vector3.up * 25;
     }
 }

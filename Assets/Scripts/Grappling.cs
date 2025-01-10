@@ -67,14 +67,16 @@ public class Grappling : MonoBehaviour
             Invoke(nameof(StopGrapple), grappleDelayTime);
         }
 
-        lr.enabled = true;
+        lr.positionCount = 2;
+        lr.SetPosition(0, gunTip.position);
         lr.SetPosition(1, grapplePoint);
+        lr.enabled = true;
     }
 
     private void ExecuteGrapple()
     {
 
-        
+
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
         float grapplePointRelativeYPos = grapplePoint.y - lowestPoint.y;
         float highestPointOnArc = grapplePointRelativeYPos + overshootYAxis;
