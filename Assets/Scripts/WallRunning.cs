@@ -157,7 +157,7 @@ public class WallRunning : MonoBehaviour
 
         // push to wall force
         if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
-            rb.AddForce(-wallNormal * 100, ForceMode.Force);
+            rb.AddForce(-wallNormal * 200, ForceMode.Force);
 
         // weaken gravity
         if (useGravity)

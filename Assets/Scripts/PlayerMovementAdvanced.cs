@@ -19,6 +19,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float slopeIncreaseMultiplier;
 
     public float groundDrag;
+    public float airDrag;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -39,7 +40,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     [Header("Ground Check")]
     public float playerHeight;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     [Header("Slope Handling")]
     public float maxSlopeAngle;
@@ -107,6 +108,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
             rb.linearDamping = 0;
     }
 
+    /* private void ApplyAirDrag()
+    {
+        Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+        Vector3 horizontalDrag = horizontalVelocity * airDrag * Time.deltaTime;
+        rb.linearVelocity -= horizontalDrag;
+    } */
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -162,7 +170,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // Mode - Sliding
-        else if (sliding)
+        else if (sliding && grounded)
         {
             state = MovementState.sliding;
 
