@@ -38,14 +38,19 @@ public class Sliding : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0) && pm.grounded)
+        {
             StartSlide();
+        }
 
-        else if (Input.GetKeyDown(slideKey) && (horizontalInput != 0 || verticalInput != 0) && !pm.grounded)
-            StartCoroutine(CheckSlide());
+        if (Input.GetKeyDown(slideKey) && !pm.grounded)
+        {
+            pm.crouchHeldInAir = true;
+        }
 
         if (Input.GetKeyUp(slideKey) && pm.sliding)
+        {
             StopSlide();
-        StopCoroutine(CheckSlide());
+        }
     }
 
     private void FixedUpdate()
@@ -54,19 +59,8 @@ public class Sliding : MonoBehaviour
             SlidingMovement();
     }
 
-    IEnumerator CheckSlide()
-    {
-        while (true)
-        {
-            if (pm.grounded)
-            {
-                StartSlide();
-            }
 
-        }
-    }
-
-    private void StartSlide()
+    public void StartSlide()
     {
         pm.sliding = true;
 

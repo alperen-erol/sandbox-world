@@ -58,6 +58,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     Rigidbody rb;
 
     PlayerSpeed ps;
+    Sliding pSlide;
 
     public MovementState state;
     public enum MovementState
@@ -73,6 +74,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
         air
     }
 
+
+    public bool crouchHeldInAir;
     public bool standingStill;
     public bool activeGrapple;
     public bool freeze;
@@ -82,6 +85,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Start()
     {
+        pSlide = GetComponent<Sliding>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         ps = GetComponent<PlayerSpeed>();
@@ -100,6 +104,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+
+        if (grounded && crouchHeldInAir)
+        {
+            crouchHeldInAir = false;
+            pSlide.StartSlide();
+        }
 
         // handle drag
         if (grounded && !activeGrapple)
@@ -140,12 +150,14 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+
         }
 
         // stop crouch
         if (Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
+            crouchHeldInAir = false;
         }
     }
 
