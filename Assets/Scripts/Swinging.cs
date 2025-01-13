@@ -17,6 +17,13 @@ public class Swinging : MonoBehaviour
     private Vector3 swingPoint;
     private SpringJoint joint;
 
+    [Header("Joint Settings")]
+    public float spring = 4.5f;
+    public float damper = 7f;
+    public float massScale = 4.5f;
+
+
+
     private void Start()
     {
         pm = GetComponent<PlayerMovementAdvanced>();
@@ -51,9 +58,9 @@ public class Swinging : MonoBehaviour
             /* joint.maxDistance = distanceFromPoint * 0.8f; */
             joint.minDistance = distanceFromPoint * 0.25f;
 
-            joint.spring = 4.5f;
-            joint.damper = 7f;
-            joint.massScale = 4.5f;
+            joint.spring = spring;
+            joint.damper = damper;
+            joint.massScale = massScale;
 
             lr.positionCount = 2;
             currentGrapplePosition = gunTip.position;
