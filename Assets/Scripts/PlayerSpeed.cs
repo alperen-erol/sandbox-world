@@ -16,7 +16,6 @@ public class PlayerSpeed : MonoBehaviour
 
         // Display the speed
         speedText.text = speed.ToString("F2");
-        Debug.Log(speed);
     }
 
     public Vector3 ReturnVelocity()
