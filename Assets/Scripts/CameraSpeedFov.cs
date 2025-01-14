@@ -28,6 +28,5 @@ public class CameraSpeedFov : MonoBehaviour
         float targetFOV = baseFOV + ps.speed;
         cam.Lens.FieldOfView = Mathf.Lerp(cam.Lens.FieldOfView, targetFOV, lerpSpeed * Time.deltaTime);
         finalFov = cam.Lens.FieldOfView;
-        Debug.Log(cam.Lens.FieldOfView);
     }
 }

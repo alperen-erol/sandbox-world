@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7651096962088999989}
   - component: {fileID: 3546032181638062903}
+  - component: {fileID: 9047502924018507758}
   - component: {fileID: 6906160752191021158}
   - component: {fileID: 2119945615961648527}
   - component: {fileID: 2691501896697066090}
@@ -17,9 +18,10 @@ GameObject:
   - component: {fileID: 2338486201512814281}
   - component: {fileID: 7390504612919658511}
   - component: {fileID: 5547417961678414022}
+  - component: {fileID: 4267248061162244139}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +70,18 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &9047502924018507758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449690206151585014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef5a6295f760f7478f2837d8869e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6906160752191021158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,14 +96,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 8
   sprintSpeed: 12
-  slideSpeed: 14
-  wallRunSpeed: 18
-  swingSpeed: 25
-  speedIncreaseMultiplier: 1.7
-  slopeIncreaseMultiplier: 2.5
+  slideSpeed: 26
+  wallRunSpeed: 28
+  swingSpeed: 40
+  speedIncreaseMultiplier: 1.4
+  slopeIncreaseMultiplier: 1.5
   groundDrag: 4
-  airDrag: 0
-  jumpForce: 23
+  airDrag: 4
+  jumpForce: 18
   jumpCooldown: 0.15
   airMultiplier: 1.3
   crouchSpeed: 4
@@ -101,9 +115,11 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  grounded: 0
   maxSlopeAngle: 50
   orientation: {fileID: 7651096962088999989}
   state: 0
+  crouchHeldInAir: 0
   standingStill: 0
   activeGrapple: 0
   freeze: 0
@@ -138,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedText: {fileID: 0}
   rb: {fileID: 3546032181638062903}
-  speed: 0
+  speed: 15
 --- !u!114 &4736622177485858667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +250,25 @@ MonoBehaviour:
     m_Bits: 64
   pm: {fileID: 0}
   maxSwingDistance: 50
+  spring: 1.5
+  damper: 15
+  massScale: 3
+--- !u!114 &4267248061162244139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449690206151585014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf5600a93642d44aae4d14e9443acee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  baseFOV: 70
+  lerpSpeed: 1
+  finalFov: 0
 --- !u!1 &5063438313054235814
 GameObject:
   m_ObjectHideFlags: 0
