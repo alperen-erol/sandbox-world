@@ -11,6 +11,7 @@ public class Swinging : MonoBehaviour
     public Transform gunTip, cam, player;
     public LayerMask whatIsGrappleable;
     public PlayerMovementAdvanced pm;
+    private SoundSystem ss;
 
     [Header("Swinging")]
     public float maxSwingDistance = 25f;
@@ -27,6 +28,7 @@ public class Swinging : MonoBehaviour
     private void Start()
     {
         pm = GetComponent<PlayerMovementAdvanced>();
+        ss = GetComponent<SoundSystem>();
     }
 
 
@@ -48,6 +50,7 @@ public class Swinging : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxSwingDistance, whatIsGrappleable))
         {
+            ss.PlayGrapplingHookLand(hit.transform);
             swingPoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;

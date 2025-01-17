@@ -44,11 +44,13 @@ public class WallRunning : MonoBehaviour
     public Transform orientation;
     private PlayerMovementAdvanced pm;
     private Rigidbody rb;
+    private SoundSystem ss;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovementAdvanced>();
+        ss = GetComponent<SoundSystem>();
     }
 
     private void Update()
@@ -131,12 +133,11 @@ public class WallRunning : MonoBehaviour
         wallRunTimer = maxWallRunTime;
 
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-
-
     }
 
     private void WallRunningMovement()
     {
+        ss.PlayFootstep();
         rb.useGravity = useGravity;
 
         Vector3 wallNormal = wallRight ? rightWallhit.normal : leftWallhit.normal;
@@ -172,6 +173,7 @@ public class WallRunning : MonoBehaviour
 
     private void WallJump()
     {
+        ss.PlayJump();
         // enter exiting wall state
         exitingWall = true;
         exitWallTimer = exitWallTime;

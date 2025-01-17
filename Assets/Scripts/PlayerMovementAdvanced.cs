@@ -59,12 +59,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     PlayerSpeed ps;
     Sliding pSlide;
+    SoundSystem ss;
 
     public MovementState state;
     public enum MovementState
     {
         walking,
-        sprinting,
         crouching,
         sliding,
         wallrunning,
@@ -85,6 +85,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void Start()
     {
+        ss = GetComponent<SoundSystem>();
         pSlide = GetComponent<Sliding>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -207,18 +208,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
             desiredMoveSpeed = crouchSpeed;
         }
 
-        // Mode - Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
-        {
-            state = MovementState.sprinting;
-            desiredMoveSpeed = sprintSpeed;
-        }
-
         // Mode - Walking
         else if (grounded)
         {
             state = MovementState.walking;
             desiredMoveSpeed = walkSpeed;
+            ss.PlayFootstep();
         }
 
         // Mode - Air
@@ -326,7 +321,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     private void Jump()
     {
         exitingSlope = true;
-
+        ss.PlayJump();
         // reset y velocity
         rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
 
