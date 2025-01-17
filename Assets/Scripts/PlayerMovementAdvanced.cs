@@ -10,8 +10,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public float slideSpeed;
-    private float desiredMoveSpeed;
-    private float lastDesiredMoveSpeed;
+    public float desiredMoveSpeed;
+    public float lastDesiredMoveSpeed;
     public float wallRunSpeed;
     public float swingSpeed;
 
@@ -109,6 +109,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         {
             crouchHeldInAir = false;
             pSlide.StartSlide();
+
         }
 
         // handle drag
@@ -116,6 +117,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
             rb.linearDamping = groundDrag;
         else
             rb.linearDamping = 0;
+
+        if (ps.speed < 1 && grounded)
+        {
+            StopAllCoroutines();
+        }
     }
 
     /* private void ApplyAirDrag()
@@ -160,6 +166,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             crouchHeldInAir = false;
         }
     }
+
 
     private void StateHandler()
     {
@@ -221,7 +228,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
 
         // check if desiredMoveSpeed has changed drastically
-        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
+        if (Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 6f && moveSpeed != 0)
         {
             StopAllCoroutines();
             StartCoroutine(SmoothlyLerpMoveSpeed());
@@ -257,9 +264,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
             yield return null;
         }
-
         moveSpeed = desiredMoveSpeed;
+
     }
+
+
 
     private void MovePlayer()
     {

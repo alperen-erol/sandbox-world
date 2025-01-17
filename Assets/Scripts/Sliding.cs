@@ -63,9 +63,9 @@ public class Sliding : MonoBehaviour
     public void StartSlide()
     {
         pm.sliding = true;
-
+        pm.desiredMoveSpeed = pm.slideSpeed;
         playerObj.localScale = new Vector3(playerObj.localScale.x, slideYScale, playerObj.localScale.z);
-        rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
+        rb.AddForce(Vector3.down * 30f, ForceMode.Impulse);
 
         slideTimer = maxSlideTime;
     }
