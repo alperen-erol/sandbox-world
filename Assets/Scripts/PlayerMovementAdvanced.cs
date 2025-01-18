@@ -14,6 +14,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float lastDesiredMoveSpeed;
     public float wallRunSpeed;
     public float swingSpeed;
+    public float coroutineStopLimit;
 
     public float speedIncreaseMultiplier;
     public float slopeIncreaseMultiplier;
@@ -68,7 +69,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
         crouching,
         sliding,
         wallrunning,
-        freeze,
         swinging,
         standingStill,
         air
@@ -78,7 +78,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public bool crouchHeldInAir;
     public bool standingStill;
     public bool activeGrapple;
-    public bool freeze;
     public bool sliding;
     public bool wallrunning;
     public bool swinging;
@@ -119,7 +118,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else
             rb.linearDamping = 0;
 
-        if (ps.speed < 1 && grounded)
+        if (ps.speed < coroutineStopLimit && grounded)
         {
             StopAllCoroutines();
         }
@@ -177,12 +176,6 @@ public class PlayerMovementAdvanced : MonoBehaviour
             desiredMoveSpeed = swingSpeed;
         }
 
-        else if (freeze)
-        {
-            state = MovementState.freeze;
-            moveSpeed = 0;
-            rb.linearVelocity = Vector3.zero;
-        }
         else if (wallrunning)
         {
             state = MovementState.wallrunning;
@@ -198,7 +191,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
                 desiredMoveSpeed = slideSpeed;
 
             else
-                desiredMoveSpeed = sprintSpeed;
+                desiredMoveSpeed = slideSpeed;
         }
 
         // Mode - Crouching

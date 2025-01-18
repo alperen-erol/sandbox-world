@@ -2863,7 +2863,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 3
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -4880,10 +4880,18 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1322408412}
+    - target: {fileID: 2338486201512814281, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: wallJumpUpForce
+      value: 56
+      objectReference: {fileID: 0}
     - target: {fileID: 2691501896697066090, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
       propertyPath: speedText
       value: 
       objectReference: {fileID: 449599979}
+    - target: {fileID: 3546032181638062903, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: m_Mass
+      value: 2.4
+      objectReference: {fileID: 0}
     - target: {fileID: 4267248061162244139, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
       propertyPath: cam
       value: 
@@ -4900,6 +4908,34 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 807382396}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: airDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: jumpForce
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: walkSpeed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: groundDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: slideSpeed
+      value: 29.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: sprintSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: coroutineStopLimit
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7390504612919658511, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
       propertyPath: lr
       value: 
