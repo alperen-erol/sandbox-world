@@ -63,6 +63,7 @@ public class ObjectInteract : MonoBehaviour
 
     private void StartLoading()
     {
+        Debug.Log("sStart loading called");
         SetUITrue();
         Width += Time.deltaTime;
         ProgressBar.rectTransform.localScale = new Vector3(Width, 1, 1);

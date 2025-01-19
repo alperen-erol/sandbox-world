@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4151586930334135521}
   - component: {fileID: 2532090390564531765}
   - component: {fileID: 4519962638088296024}
+  - component: {fileID: 8444849512512969644}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Cylinder
@@ -28,9 +29,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9005360254111628061}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -170.88242, y: 20.46292, z: -18.160591}
-  m_LocalScale: {x: 1, y: 0.20625475, z: 1}
+  m_LocalScale: {x: 2.1596, y: 0.44542778, z: 2.1596}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1290,3 +1291,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.68, y: 1.9999999, z: 1.41}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8444849512512969644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9005360254111628061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d47e32a5115c64aa55a2acb52b7231, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Wall1: {fileID: 0}
+  Wall2: {fileID: 0}
+  oi: {fileID: 0}
+  wallMoveDistance: 2.5
+  wallMoveSpeed: 1
+  moveDone: 0
