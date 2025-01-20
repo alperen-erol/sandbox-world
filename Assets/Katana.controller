@@ -42,9 +42,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.43584898
-  m_TransitionOffset: 0.04937553
-  m_ExitTime: 0.5196631
+  m_TransitionDuration: 0.3246729
+  m_TransitionOffset: 0.1009194
+  m_ExitTime: 0.89077914
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -58,7 +58,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Katana_Swing
-  m_Speed: 2.5
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 314164990067900855}
@@ -119,9 +119,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.047103107
+  m_TransitionDuration: 0.038986564
   m_TransitionOffset: 0
-  m_ExitTime: 0.41550192
+  m_ExitTime: 0.41550198
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
