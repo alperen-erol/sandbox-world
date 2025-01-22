@@ -3,58 +3,72 @@ using UnityEngine;
 public class WeaponAnim : MonoBehaviour
 {
     public Animator animator;
-    public Enemy enemy;
-    public float cooldownTime = 1f;
-    public bool isOnCooldown = false;
-    private Collider weaponCollider;
     public AudioSource soundSystem;
     public AudioClip swordSwing;
     public AudioClip swordHit;
 
-    private void Start()
-    {
-        weaponCollider = GetComponent<Collider>();
-        weaponCollider.enabled = false; // Ensure it's off at start
-    }
+    private int comboStep = 0;
+    private bool isHoldingAttack = false;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isOnCooldown)
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Attack();
+            isHoldingAttack = true;
+            PerformCombo();
         }
-    }
 
-    private void Attack()
-    {
-        animator.SetTrigger("Attack");
-        isOnCooldown = true;
-        soundSystem.PlayOneShot(swordSwing);
-        Invoke("ResetCooldown", cooldownTime);
-    }
-
-    private void EnableCollider()
-    {
-        weaponCollider.enabled = true;
-    }
-
-    private void DisableCollider()
-    {
-        weaponCollider.enabled = false;
+        if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            isHoldingAttack = false;
+            ResetCombo();
+        }
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Enemy") && weaponCollider.enabled)
+        if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("collider");
+            other.gameObject.GetComponent<Enemy>().enemyHealth -= 50;
             soundSystem.PlayOneShot(swordHit);
-            enemy.enemyHealth -= 50f;
         }
     }
 
-    private void ResetCooldown()
+    private void PerformCombo()
     {
-        isOnCooldown = false;
+        if (!isHoldingAttack) return;
+
+        comboStep++;
+
+        if (comboStep > 3)
+        {
+            comboStep = 2; // Loop between Attack2 and Attack3
+        }
+
+        animator.SetTrigger("Attack" + comboStep);
+        soundSystem.PlayOneShot(swordSwing);
+
+        float animationTime = GetAnimationLength("Attack" + comboStep);
+        Debug.Log(animationTime);
+        Invoke(nameof(PerformCombo), animationTime * 0.95f); // Auto-continue combo
+    }
+
+    private void ResetCombo()
+    {
+        comboStep = 0;
+        animator.SetTrigger("Idle");
+    }
+
+    private float GetAnimationLength(string animationName)
+    {
+        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
+        foreach (AnimationClip clip in ac.animationClips)
+        {
+            if (clip.name == animationName)
+            {
+                return clip.length;
+            }
+        }
+        return 0.5f; // Default value
     }
 }

@@ -2781,12 +2781,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 662167576}
-  enemy: {fileID: 1289616292}
-  cooldownTime: 0.2
-  isOnCooldown: 0
   soundSystem: {fileID: 207305361}
   swordSwing: {fileID: 8300000, guid: 46b32e32db1167e4db874ed30aa5e397, type: 3}
-  swordHit: {fileID: 8300000, guid: 541ff11f1d367dc4c822558e7c0d0169, type: 3}
 --- !u!1 &734913214
 GameObject:
   m_ObjectHideFlags: 0
@@ -7275,6 +7271,14 @@ PrefabInstance:
     - target: {fileID: 2708423767286118995, guid: 31e5c1f8e882c4144b4280b0d69f5eb4, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726501557971745828, guid: 31e5c1f8e882c4144b4280b0d69f5eb4, type: 3}
+      propertyPath: TiltAxis.Range.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2726501557971745828, guid: 31e5c1f8e882c4144b4280b0d69f5eb4, type: 3}
+      propertyPath: TiltAxis.Range.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
