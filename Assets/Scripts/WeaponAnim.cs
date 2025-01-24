@@ -7,8 +7,15 @@ public class WeaponAnim : MonoBehaviour
     public AudioClip swordSwing;
     public AudioClip swordHit;
 
+    private Collider weaponCollider;
     private int comboStep = 0;
     private bool isHoldingAttack = false;
+
+    private void Start()
+    {
+        weaponCollider = GetComponent<Collider>();
+        weaponCollider.enabled = false;
+    }
 
     private void Update()
     {
@@ -51,6 +58,16 @@ public class WeaponAnim : MonoBehaviour
         float animationTime = GetAnimationLength("Attack" + comboStep);
         Debug.Log(animationTime);
         Invoke(nameof(PerformCombo), animationTime * 0.95f); // Auto-continue combo
+    }
+
+    private void EnableWeaponCollider()
+    {
+        weaponCollider.enabled = true;
+    }
+
+    private void DisableWeaponCollider()
+    {
+        weaponCollider.enabled = false;
     }
 
     private void ResetCombo()

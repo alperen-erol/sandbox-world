@@ -46,16 +46,16 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.26666668
-        value: {x: 183.615, y: 480.883, z: 482.044}
-        inSlope: {x: 0, y: 0, z: 81.52019}
-        outSlope: {x: 0, y: 0, z: 81.52019}
+        value: {x: 183.615, y: 480.883, z: 466.741}
+        inSlope: {x: 0, y: 0, z: 68.51675}
+        outSlope: {x: 0, y: 0, z: 68.51675}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.41666666
-        value: {x: 183.615, y: 480.883, z: 488.15802}
+        value: {x: 183.615, y: 480.883, z: 477.71802}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -457,16 +457,16 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.26666668
-        value: 482.044
-        inSlope: 81.52019
-        outSlope: 81.52019
+        value: 466.741
+        inSlope: 68.51675
+        outSlope: 68.51675
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.41666666
-        value: 488.15802
+        value: 477.71802
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -769,4 +769,18 @@ AnimationClip:
     flags: 0
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: EnableWeaponCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.2
+    functionName: DisableWeaponCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
