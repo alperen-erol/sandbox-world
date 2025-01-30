@@ -36,6 +36,7 @@ public class WeaponAnim : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("Hit enemy!");
             other.gameObject.GetComponent<Enemy>().enemyHealth -= 50;
             soundSystem.PlayOneShot(swordHit);
         }
@@ -56,18 +57,19 @@ public class WeaponAnim : MonoBehaviour
         soundSystem.PlayOneShot(swordSwing);
 
         float animationTime = GetAnimationLength("Attack" + comboStep);
-        Debug.Log(animationTime);
         Invoke(nameof(PerformCombo), animationTime * 0.95f); // Auto-continue combo
     }
 
     private void EnableWeaponCollider()
     {
         weaponCollider.enabled = true;
+        Debug.Log("Weapon collider enabled");
     }
 
     private void DisableWeaponCollider()
     {
         weaponCollider.enabled = false;
+        Debug.Log("Weapon collider disabled");
     }
 
     private void ResetCombo()

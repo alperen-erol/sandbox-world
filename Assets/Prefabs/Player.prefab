@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 8990342259159430489}
   - component: {fileID: 6304236714637275088}
   - component: {fileID: 6850857009228369697}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   coroutineStopLimit: 4
   speedIncreaseMultiplier: 1.4
   slopeIncreaseMultiplier: 1.5
-  groundDrag: 1
+  groundDrag: 2
   airDrag: 0
   jumpForce: 45
   jumpCooldown: 0.15
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b373b175d8d19374387e84c7ad5e0e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingKey: 323
+  swingKey: 324
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   cam: {fileID: 0}
@@ -243,7 +243,7 @@ MonoBehaviour:
     m_Bits: 64
   pm: {fileID: 0}
   maxSwingDistance: 50
-  spring: 1.5
+  spring: 3
   damper: 15
   massScale: 3
 --- !u!114 &4267248061162244139
@@ -292,7 +292,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   jump: {fileID: 8300000, guid: 45bc125cb8cb195408490bec63fde615, type: 3}
   grapplingHookLand: {fileID: 8300000, guid: f3a78db5aa167de42a99d4a48047f1bf, type: 3}
   footstepSpeed: 0
-  minFootstepSpeed: 0.28
+  minFootstepSpeed: 0.34
 --- !u!1 &3774326005737660530
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,8 +420,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3774326005737660530}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 67.252014, y: -42.502224, z: 5.4743524}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 6821058344537806147}
   - component: {fileID: 2462766480887261614}
   - component: {fileID: 9086182288694022635}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PlayerCapsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
