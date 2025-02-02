@@ -9,7 +9,12 @@ public class WeaponAnim : MonoBehaviour
 
     private Collider weaponCollider;
     private int comboStep = 0;
-    private bool isHoldingAttack = false;
+    private bool canAttack = true;
+    private bool isAttacking = false;
+    public bool isBlocking = false;
+    private float comboResetTime = 1.0f;
+    private float lastClickTime = 0f;
+    private bool canReset = false;
 
     private void Start()
     {
@@ -19,22 +24,32 @@ public class WeaponAnim : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canAttack && !isBlocking)
         {
-            isHoldingAttack = true;
             PerformCombo();
+            lastClickTime = Time.time;
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
-            isHoldingAttack = false;
-            ResetCombo();
+            StartBlocking();
         }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            StopBlocking();
+        }
+
+        if (Time.time - lastClickTime > comboResetTime && canReset && !isBlocking && !isAttacking)
+        {
+            ResetComboStep();
+            canReset = false;
+        }
+        Debug.Log(canAttack + " " + isAttacking);
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Hit enemy!");
             other.gameObject.GetComponent<Enemy>().enemyHealth -= 50;
@@ -44,50 +59,60 @@ public class WeaponAnim : MonoBehaviour
 
     private void PerformCombo()
     {
-        if (!isHoldingAttack) return;
+        if (isAttacking) return;
 
+        canAttack = false;
+        isAttacking = true;
         comboStep++;
 
         if (comboStep > 3)
         {
-            comboStep = 2; // Loop between Attack2 and Attack3
+            comboStep = 2;
         }
 
         animator.SetTrigger("Attack" + comboStep);
         soundSystem.PlayOneShot(swordSwing);
-
-        float animationTime = GetAnimationLength("Attack" + comboStep);
-        Invoke(nameof(PerformCombo), animationTime * 0.95f); // Auto-continue combo
+        lastClickTime = Time.time;
+        canReset = true;
     }
 
-    private void EnableWeaponCollider()
+    public void ResetComboState()
+    {
+        canAttack = true;
+        isAttacking = false;
+    }
+
+    public void ResetComboStep()
+    {
+        Debug.Log("reset combo step");
+        animator.SetTrigger("Idle");
+        comboStep = 0;
+    }
+
+    public void EnableWeaponCollider()
     {
         weaponCollider.enabled = true;
-        Debug.Log("Weapon collider enabled");
     }
 
-    private void DisableWeaponCollider()
+    public void DisableWeaponCollider()
     {
         weaponCollider.enabled = false;
-        Debug.Log("Weapon collider disabled");
     }
 
-    private void ResetCombo()
+
+    private void StartBlocking()
     {
+        isBlocking = true;
+        animator.SetTrigger("Block");
         comboStep = 0;
-        animator.SetTrigger("Idle");
     }
 
-    private float GetAnimationLength(string animationName)
+    private void StopBlocking()
     {
-        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
-        foreach (AnimationClip clip in ac.animationClips)
-        {
-            if (clip.name == animationName)
-            {
-                return clip.length;
-            }
-        }
-        return 0.5f; // Default value
+        isBlocking = false;
+        animator.SetTrigger("Idle");
+        comboStep = 0;
+        canAttack = true;
+        isAttacking = false;
     }
 }

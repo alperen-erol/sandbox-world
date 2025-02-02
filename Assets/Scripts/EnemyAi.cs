@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -91,6 +90,11 @@ public class EnemyAi : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void HandleParry()
+    {
+        animator.SetTrigger("Parry" + Random.Range(1, 3));
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -98,4 +102,5 @@ public class EnemyAi : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
 }
