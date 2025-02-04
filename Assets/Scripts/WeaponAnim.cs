@@ -44,7 +44,6 @@ public class WeaponAnim : MonoBehaviour
             ResetComboStep();
             canReset = false;
         }
-        Debug.Log(canAttack + " " + isAttacking);
     }
 
     private void OnCollisionEnter(Collision other)
