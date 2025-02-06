@@ -47,6 +47,6 @@ MonoBehaviour:
   Wall1: {fileID: 0}
   Wall2: {fileID: 0}
   oi: {fileID: 0}
-  wallMoveDistance: 2.5
+  wallMoveDistance: 3
   wallMoveSpeed: 0.7
   moveDone: 0

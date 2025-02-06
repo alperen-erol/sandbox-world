@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b373b175d8d19374387e84c7ad5e0e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swingKey: 324
+  swingKey: 102
   lr: {fileID: 0}
   gunTip: {fileID: 0}
   cam: {fileID: 0}
@@ -451,7 +451,7 @@ AudioSource:
   MinDistance: 3
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
