@@ -1,12 +1,5 @@
 fileFormatVersion: 2
-guid: 252bf0fe14a772e4a8f156301a005cdf
-AssetOrigin:
-  serializedVersion: 1
-  productId: 67185
-  packageName: Katana and scabbard
-  packageVersion: 1.0
-  assetPath: Assets/Sword_Scabbard/Textures/Sword_Scabbard_Spec_Smoothness.tif
-  uploadId: 127176
+guid: b1bf3461a1e3c7f4caa4e72ca6bccd1e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -37,7 +30,7 @@ TextureImporter:
   generateCubemap: 6
   cubemapConvolution: 0
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
@@ -70,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
