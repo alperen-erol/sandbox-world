@@ -6,14 +6,14 @@ public class Parry : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip[] parrySounds;
-    private Collider collider;
+    private Collider parryCollider;
 
     public WeaponAnim wa;
 
     private void Start()
     {
-        collider = GetComponent<Collider>();
-        collider.enabled = false;
+        parryCollider = GetComponent<Collider>();
+        parryCollider.enabled = false;
     }
 
     private void Update()
@@ -39,8 +39,8 @@ public class Parry : MonoBehaviour
     public void CheckBlock()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
-            collider.enabled = true;
+            parryCollider.enabled = true;
         else if (Input.GetKeyUp(KeyCode.Mouse1))
-            collider.enabled = false;
+            parryCollider.enabled = false;
     }
 }

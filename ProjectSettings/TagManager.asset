@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - EnemyKatana
   - Lava
+  - Item
+  - Stone
+  - Katana Drop
+  - PickupItem
   layers:
   - Default
   - TransparentFX
@@ -25,9 +29,9 @@ TagManager:
   - Enemy
   - EnemyKatana
   - ParryCollider
-  - 
-  - 
-  - 
+  - Stone
+  - KatanaDrop
+  - Item
   - 
   - 
   - 
