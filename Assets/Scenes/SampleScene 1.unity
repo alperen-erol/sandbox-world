@@ -7201,27 +7201,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1465855023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6796293388929054248, guid: 2cfe7caa8cc4d0b4a98d732676ece05d, type: 3}
-  m_PrefabInstance: {fileID: 1680829493}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1465855030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465855023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000ca0f14f5024147a467de943ada04a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  RandomWalkPointX: 0
-  RandomWalkPointZ: 0
-  isWalkPointSet: 0
 --- !u!1 &1478772809 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4600479184840655737, guid: fbe6798884c900f4092dafd116703ca0, type: 3}
@@ -9199,12 +9178,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
-    - {fileID: 8858471501682704984, guid: 2cfe7caa8cc4d0b4a98d732676ece05d, type: 3}
+    - {fileID: 4519177898915816648, guid: 2cfe7caa8cc4d0b4a98d732676ece05d, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6796293388929054248, guid: 2cfe7caa8cc4d0b4a98d732676ece05d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1465855030}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cfe7caa8cc4d0b4a98d732676ece05d, type: 3}
 --- !u!1 &1688605954
 GameObject:
@@ -12522,6 +12498,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1322408416}
+    - target: {fileID: 4267248061162244139, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: lerpSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5547417961678414022, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
       propertyPath: lr
       value: 
@@ -12534,6 +12514,14 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 807382396}
+    - target: {fileID: 6850857009228369697, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: footstepSpeed
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6850857009228369697, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
+      propertyPath: minFootstepSpeed
+      value: 0.34
+      objectReference: {fileID: 0}
     - target: {fileID: 6906160752191021158, guid: 4663d06ad62862e439b1e8df58dedbf1, type: 3}
       propertyPath: walkSpeed
       value: 11

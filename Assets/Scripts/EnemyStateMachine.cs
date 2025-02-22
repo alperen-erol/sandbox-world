@@ -5,19 +5,27 @@ public class EnemyStateMachine : MonoBehaviour
 {
     public enum CharacterState { Patrol, Wait, Chase, Attack }
 
+    [Header("References")]
+    [SerializeField] Transform player;
+    [SerializeField] LayerMask playerLayer;
+    [SerializeField] LayerMask whatIsGround;
     private NavMeshAgent agent;
+
+    [Header("Variables")]
+    Vector3 walkPoint;
     public CharacterState currentState;
     public float RandomWalkPointX, RandomWalkPointZ;
     public bool isWalkPointSet;
+    public float playerCheckRadius = 5f;
+    public float playerAttackRadius = 2f;
 
-    [SerializeField] LayerMask whatIsGround;
-    Vector3 walkPoint;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         currentState = CharacterState.Patrol;
     }
+
 
     void Update()
     {
@@ -38,8 +46,15 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
+
     void PatrolState()
     {
+        if (CheckPlayerDistance())
+        {
+            StopAllCoroutines();
+            ChangeState(CharacterState.Chase);
+        }
+
         if (!isWalkPointSet)
         {
             RandomWalkPointX = Random.Range(-20, 20);
@@ -59,17 +74,8 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
+
     bool isWaiting = false;
-
-    IEnumerator Wait2Seconds()
-    {
-        isWaiting = true;
-        Debug.Log("Waiting");
-        yield return new WaitForSeconds(2);
-        ChangeState(CharacterState.Patrol);
-        isWaiting = false;
-    }
-
     void WaitState()
     {
         if (!isWaiting)
@@ -78,19 +84,65 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
+
     void ChaseState()
     {
-
+        isWalkPointSet = false;
+        agent.SetDestination(player.transform.position);
+        if (CheckPlayerAttackDistance())
+        {
+            ChangeState(CharacterState.Attack);
+        }
+        if (!CheckPlayerDistance())
+        {
+            ChangeState(CharacterState.Patrol);
+        }
     }
+
 
     void AttackState()
     {
+        agent.SetDestination(transform.position);
+        transform.LookAt(player);
+        //attack
 
+        if (!CheckPlayerAttackDistance())
+        {
+            ChangeState(CharacterState.Chase);
+        }
     }
 
 
     public void ChangeState(CharacterState newState)
     {
         currentState = newState;
+    }
+
+
+    bool CheckPlayerDistance()
+    {
+        return Physics.CheckSphere(transform.position, playerCheckRadius, playerLayer);
+    }
+
+    bool CheckPlayerAttackDistance()
+    {
+        return Physics.CheckSphere(transform.position, playerAttackRadius, playerLayer);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, playerCheckRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, playerAttackRadius);
+    }
+
+    IEnumerator Wait2Seconds()
+    {
+        isWaiting = true;
+        Debug.Log("Waiting");
+        yield return new WaitForSeconds(2);
+        ChangeState(CharacterState.Patrol);
+        isWaiting = false;
     }
 }
