@@ -1,6 +1,14 @@
-public interface AIState
+public enum AiStateId
 {
-    void Enter();
-    void Update();
-    void Exit();
+    PatrolState,
+    ChasePlayer
+}
+
+
+public interface AiState
+{
+    AiStateId GetId();
+    void Enter(AiAgent agent);
+    void Update(AiAgent agent);
+    void Exit(AiAgent agent);
 }
