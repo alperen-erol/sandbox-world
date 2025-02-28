@@ -19,12 +19,12 @@ public class PatrolState : AiState
     public bool isWalkPointSet = false;
     public GameObject walkpointDebug;
 
-    public AiStateId GetId()
+    void Awake()
     {
-        return AiStateId.PatrolState;
+        id = AiStateId.PatrolState;
     }
 
-    public void Enter(AiAgent agent)
+    public override void Enter(AiAgent agent)
     {
         RandomWalkPointX = agent.config.RandomWalkPointX;
         RandomWalkPointZ = agent.config.RandomWalkPointZ;
@@ -43,7 +43,8 @@ public class PatrolState : AiState
         enemyAgent.speed = agent.config.agentPatrolSpeed;
     }
 
-    public void Update(AiAgent agent)
+
+    public override void Tick(AiAgent agent)
     {
         if (CheckPlayerDistance())
         {
@@ -51,6 +52,8 @@ public class PatrolState : AiState
             coroutines.StopCoroutines();
             agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
         }
+
+
 
         WalkPointDebug();
         if (!isWalkPointSet && !coroutines.isWaiting)
@@ -76,7 +79,7 @@ public class PatrolState : AiState
         Debug.Log(isWalkPointSet);
     }
 
-    public void Exit(AiAgent agent)
+    public override void Exit(AiAgent agent)
     {
         isWalkPointSet = false;
     }

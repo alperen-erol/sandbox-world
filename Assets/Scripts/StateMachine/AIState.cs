@@ -1,14 +1,29 @@
+using System;
+using UnityEngine;
 public enum AiStateId
 {
     PatrolState,
+    FixedPatrol,
+    RunToFixedWaypointState,
     ChasePlayer
 }
 
 
-public interface AiState
+public class AiState : MonoBehaviour
 {
-    AiStateId GetId();
-    void Enter(AiAgent agent);
-    void Update(AiAgent agent);
-    void Exit(AiAgent agent);
+
+    public AiStateId id;
+
+    public virtual void Enter(AiAgent agent)
+    {
+
+    }
+    public virtual void Tick(AiAgent agent)
+    {
+
+    }
+    public virtual void Exit(AiAgent agent)
+    {
+
+    }
 }

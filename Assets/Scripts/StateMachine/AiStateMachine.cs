@@ -1,36 +1,30 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AiStateMachine
 {
-    public AiState[] states;
+    public List<AiState> states = new List<AiState>();
     public AiAgent agent;
     public AiStateId currentState;
+
 
     public AiStateMachine(AiAgent agent)
     {
         this.agent = agent;
-        int numStates = System.Enum.GetNames(typeof(AiStateId)).Length;
-        states = new AiState[numStates];
     }
 
-    public void RegisterState(AiState state)
-    {
-        int index = (int)state.GetId();
-        states[index] = state;
-    }
 
     public AiState GetState(AiStateId stateId)
     {
-        int index = (int)stateId;
-        return states[index];
-
+        return states.Find(x => x.id == stateId);
     }
+
 
     public void Update()
     {
-        GetState(currentState)?.Update(agent);
-        Debug.Log(currentState);
+        GetState(currentState)?.Tick(agent);
     }
+
 
     public void ChangeState(AiStateId newState)
     {

@@ -1,8 +1,14 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class AiAgent : MonoBehaviour
+
+
 {
+    public List<AiState> states;
+
     public AiStateMachine stateMachine;
     public AiStateId initialState;
     public NavMeshAgent NavMeshAgent;
@@ -16,8 +22,9 @@ public class AiAgent : MonoBehaviour
     void Start()
     {
         stateMachine = new AiStateMachine(this);
-        stateMachine.RegisterState(new PatrolState());
-        stateMachine.RegisterState(new ChasePlayerState());
+
+        stateMachine.states = states;
+
         stateMachine.ChangeState(initialState);
 
         NavMeshAgent = GetComponent<NavMeshAgent>();

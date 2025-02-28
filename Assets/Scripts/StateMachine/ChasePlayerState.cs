@@ -15,7 +15,7 @@ public class ChasePlayerState : AiState
         return AiStateId.ChasePlayer;
     }
 
-    public void Enter(AiAgent agent)
+    public override void Enter(AiAgent agent)
     {
         enemyAgent = agent.NavMeshAgent;
         player = agent.player;
@@ -24,9 +24,10 @@ public class ChasePlayerState : AiState
         whatIsPlayer = agent.whatIsPlayer;
 
         enemyAgent.speed = agent.config.agentChaseSpeed;
+        Debug.LogWarning("ChasePlayerState");
     }
 
-    public void Update(AiAgent agent)
+    public override void Tick(AiAgent agent)
     {
         enemyAgent.SetDestination(agent.player.position);
 
@@ -36,7 +37,7 @@ public class ChasePlayerState : AiState
         }
     }
 
-    public void Exit(AiAgent agent)
+    public override void Exit(AiAgent agent)
     {
     }
 

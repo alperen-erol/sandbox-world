@@ -3,8 +3,8 @@ using UnityEngine;
 public class DrawGizmos : MonoBehaviour
 {
     private AiAgent agent;
-    Transform enemyTransform;
     public float playerCheckRadius, playerAttackRadius;
+    [SerializeField] Transform enemyTransform;
 
     void Start()
     {
@@ -16,8 +16,6 @@ public class DrawGizmos : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        enemyTransform = GetComponent<Transform>();
-        Debug.Log("drawing gizmos");
         Gizmos.DrawWireSphere(enemyTransform.position, playerCheckRadius);
     }
 }
