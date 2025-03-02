@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7406276195176794426}
   - component: {fileID: 1564733611681589438}
   m_Layer: 12
-  m_Name: Enemy Fixed Waypoint
+  m_Name: Enemy Fixed Waypoint 2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
