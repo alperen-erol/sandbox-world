@@ -4,16 +4,14 @@ using UnityEngine.UIElements;
 
 public class RunAwayFromPlayerState : AiState
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     Transform enemyTransform;
     Transform playerTransform;
     LayerMask whatIsPlayer;
+    LayerMask obstacleMask;
     NavMeshAgent enemyAgent;
+    public AiAgentConfig config;
 
-    float playerCheckRadius;
-    public Transform runDirectionDebug;
-
+    float playerCheckRadius, chaseSpeed;
     Vector3 runDirection;
     Vector3 walkPoint;
 
@@ -22,38 +20,55 @@ public class RunAwayFromPlayerState : AiState
         enemyTransform = agent.enemyTransform;
         playerTransform = agent.player;
         whatIsPlayer = agent.whatIsPlayer;
+        obstacleMask = LayerMask.GetMask("Obstacle"); // Make sure walls are on the "Obstacle" layer
         enemyAgent = agent.NavMeshAgent;
         playerCheckRadius = agent.config.playerCheckRadius;
-    }
+        chaseSpeed = config.agentChaseSpeed;
 
+        enemyAgent.speed = chaseSpeed;
+    }
 
     public override void Tick(AiAgent agent)
     {
         if (!CheckPlayerDistance())
         {
-            agent.stateMachine.ChangeState(AiStateId.RunAwayPatrol);
             Debug.Log("exiting run state");
+            return;
         }
+
         runDirection = (enemyTransform.position - playerTransform.position).normalized;
-        float runAwayDistance = 5f;
+        float runAwayDistance = 2f;
         walkPoint = enemyTransform.position + runDirection * runAwayDistance;
-        Debug.Log(walkPoint);
+
+        if (Physics.Raycast(enemyTransform.position, runDirection, 3f, obstacleMask))
+        {
+            Debug.Log("Wall detected! Adjusting run direction.");
+            walkPoint = FindAlternativePath();
+        }
+
         enemyAgent.SetDestination(walkPoint);
     }
 
     public override void Exit(AiAgent agent)
     {
-
     }
-
 
     bool CheckPlayerDistance()
     {
         return Physics.CheckSphere(enemyTransform.position, playerCheckRadius, whatIsPlayer);
     }
 
-    private void OnDrawGizmos()
+    Vector3 FindAlternativePath()
     {
+        Vector3 rightDir = Quaternion.Euler(0, 90, 0) * runDirection;
+        Vector3 leftDir = Quaternion.Euler(0, -90, 0) * runDirection;
 
+        bool rightClear = !Physics.Raycast(enemyTransform.position, rightDir, 2f, obstacleMask);
+        bool leftClear = !Physics.Raycast(enemyTransform.position, leftDir, 2f, obstacleMask);
+
+        if (rightClear) return enemyTransform.position + rightDir * 5f;
+        if (leftClear) return enemyTransform.position + leftDir * 5f;
+
+        return enemyTransform.position - runDirection * 3f; // If stuck, move slightly backward
     }
 }

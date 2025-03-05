@@ -13,6 +13,7 @@ public class PatrolState : AiState
     private NavMeshAgent enemyAgent;
     private LayerMask whatIsGround, whatIsPlayer;
     private Coroutines coroutines;
+    [SerializeField] AiStateId FinishState;
 
     // Variables
     public Vector3 walkPoint;
@@ -50,7 +51,7 @@ public class PatrolState : AiState
         {
             Debug.Log("Player Detected");
             coroutines.StopCoroutines();
-            agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
+            agent.stateMachine.ChangeState(FinishState);
         }
 
 

@@ -161,6 +161,8 @@ public class Inventory : MonoBehaviour
             pickupText.text = hit.collider.name;
             pickupText.gameObject.SetActive(true);
             itemDetected = true;
+
+
             if (hit.collider.tag == "Stone")
             {
                 pickupText.text = "Press E to pick up Stone";
@@ -176,6 +178,8 @@ public class Inventory : MonoBehaviour
                 }
 
             }
+
+
             else if (hit.collider.tag == "Katana Drop")
             {
                 pickupText.text = "Press E to pick up Katana";
@@ -187,6 +191,21 @@ public class Inventory : MonoBehaviour
                     Destroy(hit.collider.gameObject);
                 }
             }
+
+
+            else if (hit.collider.tag == "CellButton")
+            {
+                pickupText.text = "Press E to close The Cell";
+                pickupText.gameObject.SetActive(true);
+                itemDetected = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    GameObject button = hit.collider.gameObject;
+                    button.GetComponent<Interactable>().MovePrisonCell = true;
+                }
+            }
+
+
             if (hit.collider.CompareTag("PickupItem"))
             {
                 pickupText.text = "Hold E to pick up " + hit.collider.name;
