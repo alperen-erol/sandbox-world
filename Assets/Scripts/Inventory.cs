@@ -195,7 +195,7 @@ public class Inventory : MonoBehaviour
 
             else if (hit.collider.tag == "CellButton")
             {
-                pickupText.text = "Press E to close The Cell";
+                pickupText.text = "Press E to close The Cell ";
                 pickupText.gameObject.SetActive(true);
                 itemDetected = true;
                 if (Input.GetKeyDown(KeyCode.E))

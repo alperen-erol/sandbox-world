@@ -32,7 +32,6 @@ public class RunAwayFromPlayerState : AiState
     {
         if (!CheckPlayerDistance())
         {
-            Debug.Log("exiting run state");
             return;
         }
 
