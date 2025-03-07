@@ -11,12 +11,14 @@ public class Interactable : MonoBehaviour
     Vector3 closedPosition;
     Vector3 openPosition;
     public bool isCellClosed = false;
+    bool openCell = false;
 
     void Start()
     {
         prisonCell = transform.parent.Find("prison break")?.gameObject;
         closedPosition = new Vector3(-4.54f, -4.647f, 0.08f);  // Closed position
         openPosition = prisonCell.transform.localPosition;  // Start position is the open position
+
     }
 
     void Update()
@@ -25,11 +27,14 @@ public class Interactable : MonoBehaviour
         {
             if (!isCellClosed)
                 HandleClosePrisonCell();
+            else if (isCellClosed && openCell)
+                HandleOpenPrisonCell(); // 🔥 This ensures continuous movement when opening
         }
     }
 
     private void HandleClosePrisonCell()
     {
+        openCell = false;
         prisonCell.transform.localPosition = Vector3.MoveTowards(
             prisonCell.transform.localPosition,
             closedPosition,
@@ -39,7 +44,6 @@ public class Interactable : MonoBehaviour
         if (Vector3.Distance(prisonCell.transform.localPosition, closedPosition) < 0.01f)
         {
             isCellClosed = true;
-            MovePrisonCell = false;
             Debug.Log("Cell closed!");
             StartCoroutine(OpenCell());
         }
@@ -65,6 +69,6 @@ public class Interactable : MonoBehaviour
     {
         yield return new WaitForSeconds(cellCooldown);
         MovePrisonCell = true;
-        HandleOpenPrisonCell();
+        openCell = true;
     }
 }

@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 5970
+  m_VersionIndex: 5997
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1360,6 +1360,7 @@ GameObject:
   - component: {fileID: 4186913707174368814}
   - component: {fileID: 9116735103724159631}
   - component: {fileID: 6168082178394449012}
+  - component: {fileID: 263602377161112169}
   m_Layer: 0
   m_Name: prison break
   m_TagString: Untagged
@@ -1376,7 +1377,7 @@ Transform:
   m_GameObject: {fileID: 7594548501516029588}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071071, z: -0, w: 0.70710653}
-  m_LocalPosition: {x: -4.54, y: -4.647887, z: 3.81}
+  m_LocalPosition: {x: -4.54, y: -4.647887, z: 3.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4368,7 +4369,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 10680
+  m_VersionIndex: 10701
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4472,6 +4473,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!208 &263602377161112169
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594548501516029588}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.8570001, y: 1.34, z: 0.62}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0.034, y: 0.30900002, z: -0.035}
+  m_TimeToStationary: 0.5
 --- !u!1001 &7506348042138667388
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4559,6 +4576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prisonCell: {fileID: 0}
   MovePrisonCell: 0
+  cellCooldown: 5
+  moveSpeed: 2
+  isCellClosed: 0
 --- !u!4 &3919543666287462261 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6795619527052594697, guid: e12d771bc3c2faf41bf91c10ef26072f, type: 3}
