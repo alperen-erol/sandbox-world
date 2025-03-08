@@ -14,6 +14,7 @@ TagManager:
   - Katana Drop
   - PickupItem
   - CellButton
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX

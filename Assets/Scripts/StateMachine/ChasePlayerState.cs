@@ -10,10 +10,7 @@ public class ChasePlayerState : AiState
     float playerCheckRadius;
     LayerMask whatIsPlayer;
 
-    public AiStateId GetId()
-    {
-        return AiStateId.ChasePlayer;
-    }
+
 
     public override void Enter(AiAgent agent)
     {
@@ -24,25 +21,24 @@ public class ChasePlayerState : AiState
         whatIsPlayer = agent.whatIsPlayer;
 
         enemyAgent.speed = agent.config.agentChaseSpeed;
-        Debug.LogWarning("ChasePlayerState");
     }
 
     public override void Tick(AiAgent agent)
     {
         enemyAgent.SetDestination(agent.player.position);
-
-        if (!CheckPlayerDistance())
+        if (Vector3.Distance(transform.position, agent.player.transform.position) < 2f)
         {
-            agent.stateMachine.ChangeState(AiStateId.PatrolState);
+            enemyAgent.SetDestination(transform.position);
         }
+        // Debug.Log(Vector3.Distance(transform.position, agent.player.transform.position));
     }
 
     public override void Exit(AiAgent agent)
     {
     }
 
-    bool CheckPlayerDistance()
-    {
-        return Physics.CheckSphere(enemyTransform.position, playerCheckRadius, whatIsPlayer);
-    }
+    // bool CheckPlayerDistance()
+    // {
+    //     return Physics.CheckSphere(enemyTransform.position, playerCheckRadius, whatIsPlayer);
+    // }
 }

@@ -7,11 +7,8 @@ public class Coroutines : MonoBehaviour
 
     IEnumerator Wait2Seconds()
     {
-        Debug.Log("Starting Wait");
         isWaiting = true;
-        Debug.Log("Waiting");
         yield return new WaitForSeconds(2);
-        Debug.Log("Done Waiting");
         isWaiting = false;
     }
 

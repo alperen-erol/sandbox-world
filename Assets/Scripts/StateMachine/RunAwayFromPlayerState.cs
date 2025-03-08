@@ -40,7 +40,7 @@ public class RunAwayFromPlayerState : AiState
         float runAwayDistance = 2f;
         walkPoint = enemyTransform.position + runDirection * runAwayDistance;
 
-        if (Physics.Raycast(enemyTransform.position, runDirection, 5f, Obstacle))
+        if (Physics.Raycast(enemyTransform.position, runDirection, 7f, Obstacle))
         {
             Debug.Log("Wall detected! Adjusting run direction.");
             walkPoint = FindDifferentPath();

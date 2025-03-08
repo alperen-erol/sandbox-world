@@ -49,7 +49,6 @@ public class PatrolState : AiState
     {
         if (CheckPlayerDistance())
         {
-            Debug.Log("Player Detected");
             coroutines.StopCoroutines();
             agent.stateMachine.ChangeState(FinishState);
         }
@@ -67,7 +66,6 @@ public class PatrolState : AiState
                 enemyAgent.SetDestination(walkPoint);
                 isWalkPointSet = true;
             }
-            Debug.Log(walkPoint);
         }
         if ((walkPoint - enemyTransform.position).magnitude < 2.2f)
         {
@@ -77,7 +75,6 @@ public class PatrolState : AiState
             }
             isWalkPointSet = false;
         }
-        Debug.Log(isWalkPointSet);
     }
 
     public override void Exit(AiAgent agent)

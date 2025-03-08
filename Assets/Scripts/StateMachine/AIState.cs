@@ -7,6 +7,7 @@ public enum AiStateId
     RunToFixedWaypointState,
     RunAwayPatrol,
     RunAwayFromPlayerState,
+    StunnedState,
     ChasePlayer
 }
 
