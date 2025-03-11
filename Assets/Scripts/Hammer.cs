@@ -4,6 +4,9 @@ public class Hammer : MonoBehaviour
 {
     Animator animator;
     new BoxCollider collider;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip bonk;
+    public float durability;
 
     void Start()
     {
@@ -19,6 +22,13 @@ public class Hammer : MonoBehaviour
         {
             animator.SetTrigger("Attack");
         }
+
+        if (durability <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
+        if (durability > 0)
+            this.gameObject.SetActive(true);
     }
 
     void EnableWeaponCollider()
@@ -36,10 +46,13 @@ public class Hammer : MonoBehaviour
     {
         if (collision.collider.CompareTag("EnemyAttack"))
         {
+
             AiAgent enemyAgent = collision.collider.GetComponentInParent<AiAgent>();
-            if (enemyAgent != null)
+            if (enemyAgent != null && enemyAgent.stateMachine.currentState != AiStateId.StunnedState)
             {
                 enemyAgent.stateMachine.ChangeState(AiStateId.StunnedState);
+                audioSource.PlayOneShot(bonk);
+                durability--;
             }
         }
     }

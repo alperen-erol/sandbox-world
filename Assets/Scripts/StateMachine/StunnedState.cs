@@ -13,7 +13,6 @@ public class StunnedState : AiState
     NavMeshAgent navMeshAgent;
     [SerializeField] Vector3 knockbackDirection;
     [SerializeField] float knockbackDirectionY;
-
     [SerializeField] float knockbackForce;
     [SerializeField] float stunDuration;
 
@@ -24,6 +23,7 @@ public class StunnedState : AiState
         navMeshAgent = agent.NavMeshAgent;
         enemyTransform = agent.enemyTransform;
         playerTransform = agent.player;
+        navMeshAgent.speed = 0f;
 
         navMeshAgent.enabled = false;
         StopAllCoroutines();
@@ -33,7 +33,6 @@ public class StunnedState : AiState
 
     public override void Tick(AiAgent agent)
     {
-
     }
 
     public override void Exit(AiAgent agent)
@@ -52,7 +51,7 @@ public class StunnedState : AiState
 
     IEnumerator ApplyForce(AiAgent agent)
     {
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.08f);
         HandleApplyForce();
         yield return new WaitForSeconds(stunDuration);
 

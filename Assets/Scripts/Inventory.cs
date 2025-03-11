@@ -14,6 +14,8 @@ public class Inventory : MonoBehaviour
     public GameObject playerKatana;
     public GameObject playerKatanaProp;
     public GameObject CameraHolder;
+    public GameObject hammer;
+    Hammer hammerScript;
     private GameObject heldItem;
     private FixedJoint itemJoint;
     public TMP_Text pickupText;
@@ -38,6 +40,7 @@ public class Inventory : MonoBehaviour
         Slot2.SetActive(false);
         Slot3.SetActive(false);
         playerKatana.SetActive(false);
+        hammerScript = hammer.GetComponent<Hammer>();
     }
 
     void LateUpdate()
@@ -202,6 +205,18 @@ public class Inventory : MonoBehaviour
                 {
                     GameObject button = hit.collider.gameObject;
                     button.GetComponent<Interactable>().MovePrisonCell = true;
+                }
+            }
+
+            else if (hit.collider.tag == "Hammer")
+            {
+                pickupText.text = "Press E to pick up The Hammer ";
+                pickupText.gameObject.SetActive(true);
+                itemDetected = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    hammerScript.durability = 3;
+                    hammer.gameObject.SetActive(true);
                 }
             }
 

@@ -85,15 +85,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9980ad439d0f6544a8d8e3a692a80e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 14
+  walkSpeed: 11
   sprintSpeed: 0
   slideSpeed: 22
   desiredMoveSpeed: 0
   lastDesiredMoveSpeed: 0
-  wallRunSpeed: 28
-  swingSpeed: 40
+  wallRunSpeed: 24
+  swingSpeed: 35
   coroutineStopLimit: 4
-  speedIncreaseMultiplier: 1.4
+  speedIncreaseMultiplier: 4
   slopeIncreaseMultiplier: 1.5
   groundDrag: 2
   airDrag: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   wallRunForce: 250
-  wallJumpUpForce: 56
+  wallJumpUpForce: 35
   wallJumpSideForce: 45
   wallClimbSpeed: 0
   maxWallRunTime: 2
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
   baseFOV: 70
-  lerpSpeed: 1
+  lerpSpeed: 3
   finalFov: 0
 --- !u!114 &8990342259159430489
 MonoBehaviour:
@@ -301,7 +301,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 1.1105204
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -393,7 +393,7 @@ MonoBehaviour:
   footstep: {fileID: 8300000, guid: fba95cafa5bba8649a7d269656e7317b, type: 3}
   jump: {fileID: 8300000, guid: 45bc125cb8cb195408490bec63fde615, type: 3}
   grapplingHookLand: {fileID: 8300000, guid: f3a78db5aa167de42a99d4a48047f1bf, type: 3}
-  footstepSpeed: 0
+  footstepSpeed: 0.22
   minFootstepSpeed: 0.34
 --- !u!1 &3774326005737660530
 GameObject:
