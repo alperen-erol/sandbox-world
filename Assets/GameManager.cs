@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioSource audioSourceOnDeath;
     [SerializeField] AudioClip deathSound;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject gameWinScreen;
     [SerializeField] GameObject Camera;
     [SerializeField] GameObject player;
 
@@ -30,6 +31,18 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         audioSourceOnDeath.PlayOneShot(deathSound);
         Debug.Log("ded");
+        Destroy(player);
+        Destroy(Camera);
+    }
+
+
+    public void HandlePlayerWin()
+    {
+        gameWinScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        // audioSourceOnDeath.PlayOneShot(deathSound); başarı sesi eklenecekk
+        Debug.Log("win condition met");
         Destroy(player);
         Destroy(Camera);
     }
