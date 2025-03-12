@@ -51,7 +51,7 @@ public class WeaponAnim : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Hit enemy!");
-            other.gameObject.GetComponent<Enemy>().enemyHealth -= 50;
+            // other.gameObject.GetComponent<Enemy>().enemyHealth -= 50;
             soundSystem.PlayOneShot(swordHit);
         }
     }

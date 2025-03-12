@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Hammer : MonoBehaviour
@@ -6,6 +7,7 @@ public class Hammer : MonoBehaviour
     new BoxCollider collider;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip bonk;
+    [SerializeField] TMP_Text durabilityText;
     public float durability;
 
     void Start()
@@ -18,10 +20,22 @@ public class Hammer : MonoBehaviour
 
     void Update()
     {
+
+        if (durability <= 0)
+        {
+            durabilityText.text = "Weapon Broken";
+        }
+        else
+        {
+            durabilityText.text = "Durability: " + durability;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.SetTrigger("Attack");
         }
+
 
         if (durability <= 0)
         {

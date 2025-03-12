@@ -51,7 +51,7 @@ public class StunnedState : AiState
 
     IEnumerator ApplyForce(AiAgent agent)
     {
-        yield return new WaitForSeconds(0.08f);
+        yield return new WaitForSeconds(0.12f);
         HandleApplyForce();
         yield return new WaitForSeconds(stunDuration);
 

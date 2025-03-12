@@ -28,7 +28,6 @@ public class EnemyWeapon1 : MonoBehaviour
     [SerializeField] private float damage = 20f;
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.collider.tag);
         if (collision.collider.tag == "Player")
         {
             Debug.Log("player hit");

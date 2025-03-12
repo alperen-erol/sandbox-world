@@ -10,6 +10,8 @@ public class ChasePlayerState : AiState
     float playerCheckRadius;
     LayerMask whatIsPlayer;
 
+    [SerializeField] float chaseSpeed, attackSpeed;
+
 
 
     public override void Enter(AiAgent agent)
@@ -36,10 +38,10 @@ public class ChasePlayerState : AiState
 
             if (CheckPlayerDistance())
             {
-                enemyAgent.speed = 3f;
+                enemyAgent.speed = attackSpeed;
             }
             else
-                enemyAgent.speed = 16f;
+                enemyAgent.speed = chaseSpeed;
         }
         else
             enemyAgent.SetDestination(enemyTransform.position);

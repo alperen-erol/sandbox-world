@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     public GameObject stonePropPrefab;
     public GameObject playerKatana;
     public GameObject playerKatanaProp;
+    public GameObject playerHammer;
+    public GameObject playerHammerProp;
     public GameObject CameraHolder;
     public GameObject hammer;
     Hammer hammerScript;
@@ -27,6 +29,7 @@ public class Inventory : MonoBehaviour
     public float springDamper;
     public float springMinDistance;
     public float springMaxDistance;
+    [SerializeField] float throwPropForce;
 
     public float stoneCount = 0;
     public bool playerHasBalls = false;
@@ -36,10 +39,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        Slot1.SetActive(false);
-        Slot2.SetActive(false);
-        Slot3.SetActive(false);
-        playerKatana.SetActive(false);
+        Activateslot1();
+        playerHammer.SetActive(true);
         hammerScript = hammer.GetComponent<Hammer>();
     }
 
@@ -85,6 +86,15 @@ public class Inventory : MonoBehaviour
         currentActiveSlot = 2;
     }
 
+    private void Activateslot3()
+    {
+        Slot1.SetActive(false);
+        Slot2.SetActive(false);
+        Slot3.SetActive(true);
+        currentActiveSlot = 3;
+    }
+
+
     private void HandleItemDrop()
     {
 
@@ -92,8 +102,8 @@ public class Inventory : MonoBehaviour
         {
             if (currentActiveSlot == 1)
             {
-                playerKatana.SetActive(false);
-                InstantiateKatanaProp();
+                InstantiateHammerProp();
+                playerHammer.SetActive(false);
             }
             else if (currentActiveSlot == 2)
             {
@@ -111,13 +121,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void Activateslot3()
-    {
-        Slot1.SetActive(false);
-        Slot2.SetActive(false);
-        Slot3.SetActive(true);
-        currentActiveSlot = 3;
-    }
 
     public void InstantiateBall()
     {
@@ -129,20 +132,31 @@ public class Inventory : MonoBehaviour
         }
     }
 
+
     public void InstantiateBallProp()
     {
         if (stoneCount > 0 && playerHasBalls == true)
         {
             GameObject newStone = Instantiate(stonePropPrefab, Slot2.transform.position, Slot2.transform.rotation);
-            StartCoroutine(DelayedForce(newStone, Slot2.transform.forward * 4));
+            StartCoroutine(DelayedForce(newStone, Slot2.transform.forward * throwPropForce));
             playerHasBalls = true;
         }
     }
 
-    private void InstantiateKatanaProp()
+
+    // private void InstantiateKatanaProp()
+    // {
+    //     GameObject newKatana = Instantiate(playerKatanaProp, Slot1.transform.position + Slot1.transform.forward * 3, quaternion.Euler(0, 0, -90));
+    //     StartCoroutine(DelayedForce(newKatana, Slot1.transform.forward * throwPropForce));
+    // }
+
+
+    private void InstantiateHammerProp()
     {
-        GameObject newKatana = Instantiate(playerKatanaProp, Slot1.transform.position + Slot1.transform.forward * 3, quaternion.Euler(0, 0, -90));
-        StartCoroutine(DelayedForce(newKatana, Slot1.transform.forward * 4));
+        GameObject newHammer = Instantiate(playerHammerProp, playerHammer.transform.position, quaternion.identity);
+        StartCoroutine(DelayedForce(newHammer, Slot1.transform.forward * throwPropForce));
+        HammerProp hammerProp = newHammer.GetComponent<HammerProp>();
+        hammerProp.hammerDurability = hammerScript.durability;
     }
 
     RaycastHit[] hits;
@@ -208,15 +222,17 @@ public class Inventory : MonoBehaviour
                 }
             }
 
-            else if (hit.collider.tag == "Hammer")
+            else if (hit.collider.tag == "HammerProp")
             {
                 pickupText.text = "Press E to pick up The Hammer ";
                 pickupText.gameObject.SetActive(true);
                 itemDetected = true;
+                HammerProp hammerProp = hit.collider.GetComponent<HammerProp>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    hammerScript.durability = 3;
+                    hammerScript.durability = hammerProp.hammerDurability;
                     hammer.gameObject.SetActive(true);
+                    Destroy(hit.collider.gameObject);
                 }
             }
 
