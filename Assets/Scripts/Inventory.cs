@@ -100,7 +100,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            if (currentActiveSlot == 1)
+            if (currentActiveSlot == 1 && playerHammer.activeSelf == true)
             {
                 InstantiateHammerProp();
                 playerHammer.SetActive(false);
@@ -230,8 +230,14 @@ public class Inventory : MonoBehaviour
                 HammerProp hammerProp = hit.collider.GetComponent<HammerProp>();
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    hammerScript.durability = hammerProp.hammerDurability;
+                    if (playerHammer.activeSelf == true)
+                    {
+                        InstantiateHammerProp();
+                        playerHammer.SetActive(false);
+                        playerHammer.SetActive(true);
+                    }
                     hammer.gameObject.SetActive(true);
+                    hammerScript.durability = hammerProp.hammerDurability;
                     Destroy(hit.collider.gameObject);
                 }
             }
