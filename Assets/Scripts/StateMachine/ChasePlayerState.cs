@@ -17,11 +17,11 @@ public class ChasePlayerState : AiState
     public override void Enter(AiAgent agent)
     {
         enemyAgent = agent.NavMeshAgent;
+        enemyAgent.enabled = true;
         player = agent.player;
         enemyTransform = agent.enemyTransform;
         playerCheckRadius = agent.config.playerCheckRadius;
         whatIsPlayer = agent.whatIsPlayer;
-
         enemyAgent.speed = 16;
     }
 

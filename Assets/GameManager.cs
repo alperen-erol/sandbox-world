@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         gameWinScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        // audioSourceOnDeath.PlayOneShot(deathSound); başarı sesi eklenecekk
+        // audioSourceOnDeath.PlayOneShot(); başarı sesi eklenecekk
         Debug.Log("win condition met");
         Destroy(player);
         Destroy(Camera);

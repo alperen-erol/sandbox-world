@@ -23,7 +23,6 @@ public class PrisonManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(capturedEnemies.Count);
     }
 
 

@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5691814150635306576}
   m_Layer: 10
   m_Name: Hammer
-  m_TagString: Untagged
+  m_TagString: Hammer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +149,7 @@ MonoBehaviour:
   audioSource: {fileID: 0}
   bonk: {fileID: 8300000, guid: bfe95295617be6145a3e843332e43404, type: 3}
   durabilityText: {fileID: 0}
-  durability: 3
+  durability: 20
 --- !u!54 &7325692849319778390
 Rigidbody:
   m_ObjectHideFlags: 0
