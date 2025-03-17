@@ -13,9 +13,9 @@ public class ChasePlayerState : AiState
     [SerializeField] float chaseSpeed, attackSpeed;
 
 
-
     public override void Enter(AiAgent agent)
     {
+        Debug.Log("Chase Player State Entered");
         enemyAgent = agent.NavMeshAgent;
         enemyAgent.enabled = true;
         player = agent.player;
@@ -49,6 +49,8 @@ public class ChasePlayerState : AiState
 
     public override void Exit(AiAgent agent)
     {
+        Debug.Log("Chase Player State Exited");
+
     }
 
     bool CheckPlayerDistance()

@@ -27,6 +27,7 @@ public class Stone : MonoBehaviour
         }
         if (im.destroyBallInHand)
         {
+            Debug.Log("Destroying ball in hand");
             Destroy(this.gameObject);
         }
     }

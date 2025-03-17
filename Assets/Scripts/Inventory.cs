@@ -126,8 +126,9 @@ public class Inventory : MonoBehaviour
     {
         if (stoneCount > 0 && playerHasBalls == false)
         {
+            Debug.Log("instantiating ball");
             destroyBallInHand = false;
-            Instantiate(stonePrefab, Slot2.transform.position, Slot2.transform.rotation, Slot2.transform);
+            Instantiate(stonePrefab, Slot3.transform.position, Slot3.transform.rotation, Slot3.transform);
             playerHasBalls = true;
         }
     }
@@ -137,8 +138,8 @@ public class Inventory : MonoBehaviour
     {
         if (stoneCount > 0 && playerHasBalls == true)
         {
-            GameObject newStone = Instantiate(stonePropPrefab, Slot2.transform.position, Slot2.transform.rotation);
-            StartCoroutine(DelayedForce(newStone, Slot2.transform.forward * throwPropForce));
+            GameObject newStone = Instantiate(stonePropPrefab, Slot3.transform.position, Slot3.transform.rotation);
+            StartCoroutine(DelayedForce(newStone, Slot3.transform.forward * throwPropForce));
             playerHasBalls = true;
         }
     }

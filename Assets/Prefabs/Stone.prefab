@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7765310888235666077}
   m_Layer: 15
   m_Name: Stone
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d1a3d089d158d4aab8d5918f1a6271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwPower: 800
+  throwPower: 3000
 --- !u!54 &1479495399327785680
 Rigidbody:
   m_ObjectHideFlags: 0

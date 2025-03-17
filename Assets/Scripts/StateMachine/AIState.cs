@@ -8,8 +8,17 @@ public enum AiStateId
     RunAwayPatrol,
     RunAwayFromPlayerState,
     StunnedState,
+    AirborneState,
     ChasePlayer
 }
+public enum StunType
+{
+    HammerKnockback,
+    ScepterKnockback,
+    StoneKnockBack,
+    ObstacleDestruction
+}
+
 
 
 public class AiState : MonoBehaviour

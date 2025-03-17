@@ -10,6 +10,7 @@ public class PrisonCell : MonoBehaviour
             if (enemy != null && !enemy.isCaptured)
             {
                 enemy.isCaptured = true;
+                
                 PrisonManager.Instance.EnemyCaptured(enemy);
             }
 
