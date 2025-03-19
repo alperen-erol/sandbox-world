@@ -660,7 +660,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 509
+  m_VersionIndex: 563
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -909,12 +909,13 @@ GameObject:
   - component: {fileID: 9190429722010754203}
   - component: {fileID: 7763997775790946179}
   - component: {fileID: 6803502599567833731}
+  - component: {fileID: 5712275218622267452}
   - component: {fileID: 5374943742663186725}
   - component: {fileID: 8017412526380978698}
   - component: {fileID: 404988140719894833}
   - component: {fileID: 5576179188542942546}
-  - component: {fileID: 5712275218622267452}
   - component: {fileID: 8813475968121244831}
+  - component: {fileID: 7355441906952067127}
   m_Layer: 12
   m_Name: Enemy Attack
   m_TagString: EnemyAttack
@@ -1023,7 +1024,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8431953968018474580}
-  m_Enabled: 0
+  m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 12
@@ -1038,6 +1039,33 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &5712275218622267452
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431953968018474580}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &5374943742663186725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,7 +1081,8 @@ MonoBehaviour:
   states:
   - {fileID: 404988140719894833}
   - {fileID: 5576179188542942546}
-  initialState: 6
+  - {fileID: 7355441906952067127}
+  initialState: 7
   NavMeshAgent: {fileID: 6803502599567833731}
   player: {fileID: 0}
   enemyTransform: {fileID: 7915811122959248461}
@@ -1093,9 +1122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f5bcf01f464434cbd09cd3d2df741c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 6
-  chaseSpeed: 11
-  attackSpeed: 2
+  id: 7
+  chaseSpeed: 9
+  attackSpeed: 4
 --- !u!114 &5576179188542942546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1109,37 +1138,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
+  hammerKnockbackX: 22
+  hammerKnockbackY: 6
+  hammerStunCooldown: 1.25
+  scepterKnockbackX: 8
+  scepterKnockbackY: 3
+  scepterStunCooldown: 3
+  stoneKnockbackX: 6
+  stoneKnockbackY: 2
+  stoneStunCooldown: 0.55
+  obstacleDestructionX: 12
+  obstacleDestructionY: 12
+  obstacleStunCooldown: 4
+  selectedForceType: 3
   knockbackDirection: {x: 0, y: 0, z: 0}
-  knockbackDirectionY: 5
-  knockbackForce: 15
   stunDuration: 1
---- !u!54 &5712275218622267452
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8431953968018474580}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!114 &8813475968121244831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1153,6 +1166,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCaptured: 0
+--- !u!114 &7355441906952067127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431953968018474580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f368ccb8aef3afb4087a9837de2a8bc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 6
 --- !u!1 &8708204559500157002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,7 +1426,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 509
+  m_VersionIndex: 563
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

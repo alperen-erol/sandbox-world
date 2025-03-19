@@ -9,18 +9,22 @@ public class StunnedState : AiState
     [Header("Hammer Knockback")]
     [SerializeField] private float hammerKnockbackX;
     [SerializeField] private float hammerKnockbackY;
+    [SerializeField] private float hammerStunCooldown;
 
     [Header("Scepter Knockback")]
     [SerializeField] private float scepterKnockbackX;
     [SerializeField] private float scepterKnockbackY;
+    [SerializeField] private float scepterStunCooldown;
 
     [Header("Stone Knockback")]
     [SerializeField] private float stoneKnockbackX;
     [SerializeField] private float stoneKnockbackY;
+    [SerializeField] private float stoneStunCooldown;
 
     [Header("Obstacle Destruction")]
     [SerializeField] private float obstacleDestructionX;
     [SerializeField] private float obstacleDestructionY;
+    [SerializeField] private float obstacleStunCooldown;
 
     //aistatedeki stun tipi kulandım
     public StunType selectedForceType;
@@ -40,81 +44,95 @@ public class StunnedState : AiState
     public override void Enter(AiAgent agent)
     {
         Debug.Log("Enter Stunned STate");
+        navMeshAgent = agent.NavMeshAgent;
+        navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
+        navMeshAgent.enabled = false;
         rb = GetComponent<Rigidbody>();
         enemyTransform = agent.enemyTransform;
         playerTransform = agent.player;
         rb.useGravity = true;
-        ApplyForce();
+        rb.isKinematic = false;
+        ApplyForce(agent);
     }
 
 
-    public void ApplyForce()
+    public void ApplyForce(AiAgent agent)
     {
         switch (selectedForceType)
         {
             case StunType.HammerKnockback:
-                ApplyHammerKnockBack();
+                ApplyHammerKnockBack(agent);
                 break;
             case StunType.ScepterKnockback:
-                ApplyScepterKnockback();
+                ApplyScepterKnockback(agent);
                 break;
             case StunType.StoneKnockBack:
-                ApplyStoneKnockBack();
+                ApplyStoneKnockBack(agent);
                 break;
             case StunType.ObstacleDestruction:
-                ApplyObstacleDestruction();
+                ApplyObstacleDestruction(agent);
                 break;
         }
     }
 
-    private void ApplyHammerKnockBack()
+    private void ApplyHammerKnockBack(AiAgent agent)
     {
         Debug.Log("Applying Hammer Knockback");
         knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
         rb.AddForce(knockbackDirection * hammerKnockbackX, ForceMode.Impulse);
         rb.AddForce(Vector3.up * hammerKnockbackY, ForceMode.Impulse);
+        StopAllCoroutines();
+        StartCoroutine(HammerStunDuration(hammerStunCooldown, agent));
     }
 
-    private void ApplyScepterKnockback()
+    private void ApplyScepterKnockback(AiAgent agent)
     {
         Debug.Log("Applying Scepter Knockback");
         knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
         rb.AddForce(knockbackDirection * scepterKnockbackX, ForceMode.Impulse);
         rb.AddForce(Vector3.up * scepterKnockbackY, ForceMode.Impulse);
+        StopAllCoroutines();
+        StartCoroutine(HammerStunDuration(scepterStunCooldown, agent));
     }
 
-    private void ApplyStoneKnockBack()
+
+    private void ApplyObstacleDestruction(AiAgent agent)
     {
-
+        Debug.Log("Object destroyed apply force");
+        knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
+        rb.AddForce(knockbackDirection * obstacleDestructionX, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * obstacleDestructionY, ForceMode.Impulse);
+        StopAllCoroutines();
+        StartCoroutine(HammerStunDuration(obstacleStunCooldown, agent));
     }
 
-    private void ApplyObstacleDestruction()
+
+    private void ApplyStoneKnockBack(AiAgent agent)
     {
-
+        Debug.Log("Applying stone knockback");
+        knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
+        rb.AddForce(knockbackDirection * stoneKnockbackX, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * stoneKnockbackY, ForceMode.Impulse);
+        StopAllCoroutines();
+        StartCoroutine(HammerStunDuration(stoneStunCooldown, agent));
     }
+
 
     public override void Tick(AiAgent agent)
     {
     }
 
+
     public override void Exit(AiAgent agent)
     {
     }
 
-    void HandleApplyForce()
+
+    IEnumerator HammerStunDuration(float stunTime, AiAgent agent)
     {
-        knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
-        rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
-        rb.AddForce(knockbackDirectionY * Vector3.up, ForceMode.Impulse);
+        yield return new WaitForSeconds(stunTime);
+        agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
     }
-
-    // IEnumerator ApplyForce(AiAgent agent)
-    // {
-    //     yield return new WaitForSeconds(0.12f);
-    //     HandleApplyForce();
-    //     yield return new WaitForSeconds(stunDuration);
-
-    //     agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
-    // }
 }
 

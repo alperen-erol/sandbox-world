@@ -43,7 +43,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4562626777451888243}
   serializedVersion: 4
-  m_Mass: 0.001
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ebecbccdd57a74baa9d9e7af7fb215, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hammerDurability: 3
+  hammerDurability: 14
 --- !u!136 &5832145559063133310
 CapsuleCollider:
   m_ObjectHideFlags: 0

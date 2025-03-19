@@ -8,17 +8,6 @@ public class DestructableEnemyTrigger : MonoBehaviour
     public bool objectDestroyed = false;
 
 
-    // bool x = false;
-    // void Update()
-    // {
-    //     if (!x && objectDestroyed)
-    //     {
-    //         ObjectDestroyed();
-    //         x = true;
-    //     }
-    // }
-
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "EnemyAttack")
@@ -32,6 +21,8 @@ public class DestructableEnemyTrigger : MonoBehaviour
         foreach (Enemy enemy in capturedEnemies)
         {
             GameObject enemyObject = enemy.gameObject;
+            StunnedState ss = enemyObject.GetComponent<StunnedState>();
+            ss.selectedForceType = StunType.ObstacleDestruction ;
             enemyObject.GetComponent<AiAgent>().stateMachine.ChangeState(AiStateId.StunnedState);
         }
     }

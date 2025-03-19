@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7423717695956147386}
   - component: {fileID: 1479495399327785680}
   - component: {fileID: 7765310888235666077}
+  - component: {fileID: 8824776692835308816}
   m_Layer: 15
   m_Name: Stone
   m_TagString: Stone
@@ -173,3 +174,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8824776692835308816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015868234616665743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7644e8a7f189d46924b97675aba49f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

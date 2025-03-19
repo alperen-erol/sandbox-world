@@ -99,9 +99,9 @@ MonoBehaviour:
   slopeIncreaseMultiplier: 1.5
   groundDrag: 4
   airDrag: 0
-  jumpForce: 14
+  jumpForce: 6
   jumpCooldown: 0.15
-  airMultiplier: 1.3
+  airMultiplier: 1
   crouchSpeed: 4
   crouchYScale: 0.5
   jumpKey: 32
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  baseFOV: 70
+  baseFOV: 60
   lerpSpeed: 3
   finalFov: 0
 --- !u!82 &6304236714637275088
@@ -391,15 +391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6440a5ba482a21479c42197f5696a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10000
+  health: 2000
   audioSource: {fileID: 6304236714637275088}
-  audioSourceOnDeath: {fileID: 0}
-  deathSound: {fileID: 8300000, guid: 97902cf65085913429c3875eb8a3a5bb, type: 3}
   hitsound: {fileID: 8300000, guid: 744777060d671db48b1db0b8d2cc1a99, type: 3}
   animator: {fileID: 0}
-  gameOverScreen: {fileID: 0}
   healthText: {fileID: 0}
-  Camera: {fileID: 0}
 --- !u!136 &5147082677183711719
 CapsuleCollider:
   m_ObjectHideFlags: 0

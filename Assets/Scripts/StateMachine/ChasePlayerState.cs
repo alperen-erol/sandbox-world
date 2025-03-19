@@ -1,3 +1,4 @@
+using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,7 @@ public class ChasePlayerState : AiState
     Transform enemyTransform;
     float playerCheckRadius;
     LayerMask whatIsPlayer;
+    Rigidbody rb;
 
     [SerializeField] float chaseSpeed, attackSpeed;
 
@@ -23,6 +25,8 @@ public class ChasePlayerState : AiState
         playerCheckRadius = agent.config.playerCheckRadius;
         whatIsPlayer = agent.whatIsPlayer;
         enemyAgent.speed = 16;
+        rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
     }
 
     public override void Tick(AiAgent agent)

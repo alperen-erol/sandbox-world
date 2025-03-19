@@ -126,7 +126,6 @@ public class Inventory : MonoBehaviour
     {
         if (stoneCount > 0 && playerHasBalls == false)
         {
-            Debug.Log("instantiating ball");
             destroyBallInHand = false;
             Instantiate(stonePrefab, Slot3.transform.position, Slot3.transform.rotation, Slot3.transform);
             playerHasBalls = true;
