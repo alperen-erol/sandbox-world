@@ -19,6 +19,8 @@ TagManager:
   - Hammer
   - HammerProp
   - EnemyWeapon
+  - StonePiece
+  - TITAN
   layers:
   - Default
   - TransparentFX

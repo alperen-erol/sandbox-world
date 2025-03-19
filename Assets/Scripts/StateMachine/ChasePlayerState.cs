@@ -26,7 +26,10 @@ public class ChasePlayerState : AiState
         whatIsPlayer = agent.whatIsPlayer;
         enemyAgent.speed = 16;
         rb = GetComponent<Rigidbody>();
-        rb.isKinematic = true;
+        if (this.gameObject.tag == "TITAN")
+            rb.isKinematic = false;
+        else
+            rb.isKinematic = true;
     }
 
     public override void Tick(AiAgent agent)

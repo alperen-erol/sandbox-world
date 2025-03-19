@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewSceptre : MonoBehaviour
 {
@@ -24,29 +26,24 @@ public class NewSceptre : MonoBehaviour
 
     void Update()
     {
-        if (energy < 0)
-            energy = 0;
+        energy = Mathf.Clamp(energy, 0, 100);
 
         energyText.text = "Energy: " + Mathf.FloorToInt(energy);
 
-        if (isEnergyConsume)
-        {
-            energy -= energyConsumeRate;
-        }
-        else
-        {
-            energy += energyConsumeRate / 2;
-        }
+        HandleEnergy();
 
         if (grabbedRB)
         {
             Vector3 movePos = objectHolder.position - grabbedRB.position;
             grabbedRB.AddForce(movePos * lerpSpeed);
             grabbedRB.linearDamping = 10f;
-            if (energy <= 0)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && grabbedRB.gameObject.tag == "StonePiece")
             {
-
+                grabbedRB.linearDamping = 0f;
+                grabbedRB.AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+                grabbedRB = null;
             }
+
         }
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && energy > 0)
@@ -54,22 +51,40 @@ public class NewSceptre : MonoBehaviour
             isEnergyConsume = true;
             anim.SetTrigger("Attack");
             Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f));
-            if (Physics.Raycast(ray, out RaycastHit hit, maxGrabDistance))
+            RaycastHit[] hits = Physics.RaycastAll(ray, maxGrabDistance);
+            foreach (RaycastHit hit in hits)
             {
-                if (hit.collider.gameObject.tag == "EnemyAttack" && energy > 0)
+                if (hit.collider.gameObject.CompareTag("EnemyAttack") && energy > 0)
                 {
                     grabbedRB = hit.collider.gameObject.GetComponent<Rigidbody>();
                     AiAgent aiAgent = hit.collider.gameObject.GetComponent<AiAgent>();
                     aiAgent.stateMachine.ChangeState(AiStateId.AirborneState);
                 }
+                else if (hit.collider.gameObject.CompareTag("StonePiece") && energy > 0)
+                {
+                    grabbedRB = hit.collider.gameObject.GetComponent<Rigidbody>();
+                }
             }
+            // if (Physics.RaycastAll(ray, out RaycastHit[] hits, maxGrabDistance))
+            // {
+            //     if (hit.collider.gameObject.tag == "EnemyAttack" && energy > 0)
+            //     {
+            //         grabbedRB = hit.collider.gameObject.GetComponent<Rigidbody>();
+            //         AiAgent aiAgent = hit.collider.gameObject.GetComponent<AiAgent>();
+            //         aiAgent.stateMachine.ChangeState(AiStateId.AirborneState);
+            //     }
+            //     else if (hit.collider.gameObject.tag == "StonePiece" && energy > 0)
+            //     {
+            //         grabbedRB = hit.collider.gameObject.GetComponent<Rigidbody>();
+            //     }
+            // }
         }
 
 
         if (Input.GetKeyUp(KeyCode.Mouse0) || energy <= 0)
         {
-            Debug.Log("mk up")
-; isEnergyConsume = false;
+            Debug.Log("mk up or energy < 0");
+            isEnergyConsume = false;
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Sceptre_Release"))
                 anim.SetTrigger("ReleaseAttack");
 
@@ -77,12 +92,32 @@ public class NewSceptre : MonoBehaviour
             {
                 // grabbedRB.isKinematic = false;
                 // grabbedRB.useGravity = true;
-                AiAgent aiAgent = grabbedRB.GetComponent<AiAgent>();
-                StunnedState ss = grabbedRB.GetComponent<StunnedState>();
-                ss.selectedForceType = StunType.ScepterKnockback;
-                aiAgent.stateMachine.ChangeState(AiStateId.StunnedState);
-                grabbedRB = null;
+                if (grabbedRB.gameObject.tag == "StonePiece")
+                {
+                    grabbedRB.linearDamping = 0;
+                    grabbedRB = null;
+                }
+                else
+                {
+                    AiAgent aiAgent = grabbedRB.GetComponent<AiAgent>();
+                    StunnedState ss = grabbedRB.GetComponent<StunnedState>();
+                    ss.selectedForceType = StunType.ScepterKnockback;
+                    aiAgent.stateMachine.ChangeState(AiStateId.StunnedState);
+                    grabbedRB = null;
+                }
             }
+        }
+    }
+
+    private void HandleEnergy()
+    {
+        if (isEnergyConsume)
+        {
+            energy -= energyConsumeRate;
+        }
+        else
+        {
+            energy += energyConsumeRate / 2;
         }
     }
 }
