@@ -333,7 +333,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 599
+  m_VersionIndex: 602
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -445,7 +445,7 @@ Transform:
   m_GameObject: {fileID: 2454214874141154551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.885}
+  m_LocalPosition: {x: -0.21, y: 0, z: 1.86}
   m_LocalScale: {x: 0.8749271, y: 1.8322, z: 0.1809476}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -580,7 +580,6 @@ GameObject:
   - component: {fileID: 5126033692141183581}
   - component: {fileID: 3767733605732623738}
   - component: {fileID: 6098921397878188273}
-  - component: {fileID: 5823285905996762552}
   - component: {fileID: 7302189516595471254}
   - component: {fileID: 7529831986572641014}
   - component: {fileID: 6609981213217430422}
@@ -589,6 +588,8 @@ GameObject:
   - component: {fileID: 6311998619208586651}
   - component: {fileID: 4580860585640016982}
   - component: {fileID: 3920853375353250756}
+  - component: {fileID: 8370888969952165232}
+  - component: {fileID: 563285684541126077}
   m_Layer: 12
   m_Name: ATTACK ON TITAN
   m_TagString: TITAN
@@ -606,7 +607,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.95191836, z: 0, w: 0.30635172}
   m_LocalPosition: {x: 182.4545, y: 2.68, z: -6.594226}
-  m_LocalScale: {x: 2.3338284, y: 2.3338284, z: 2.3338284}
+  m_LocalScale: {x: 2.3968418, y: 2.3338284, z: 2.3338284}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3810508239971335189}
@@ -667,29 +668,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5823285905996762552
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2868709154416737335}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.84
-  m_Height: 1.9691474
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.015426278, z: 0}
 --- !u!195 &7302189516595471254
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -699,7 +677,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 2868709154416737335}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.54
   m_Speed: 12
   m_Acceleration: 1000
   avoidancePriority: 50
@@ -720,7 +698,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2868709154416737335}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 20
   m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -736,9 +714,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &6609981213217430422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,8 +774,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  chaseSpeed: 7
-  attackSpeed: 3
+  chaseSpeed: 3
+  attackSpeed: 1
 --- !u!114 &6311998619208586651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,6 +830,70 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 6
+--- !u!136 &8370888969952165232
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868709154416737335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000002
+  m_Height: 1.9999999
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &563285684541126077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2868709154416737335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91fc9178a0b0c3d4bb8b6d91b16d9893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOptions:
+    triggerType: 0
+    minimumCollisionForce: 0
+    filterCollisionsByTag: 1
+    triggerAllowedTags:
+    - Stone
+    triggerKey: 0
+  fractureOptions:
+    fragmentCount: 10
+    xAxis: 1
+    yAxis: 1
+    zAxis: 1
+    detectFloatingFragments: 0
+    asynchronous: 0
+    insideMaterial: {fileID: 2100000, guid: 63b6ce1dc777ede49ba3681e8098a373, type: 2}
+    textureScale: {x: 1, y: 1}
+    textureOffset: {x: 0, y: 0}
+  refractureOptions:
+    enableRefracturing: 0
+    maxRefractureCount: 1
+    invokeCallbacks: 0
+  callbackOptions:
+    onFracture:
+      m_PersistentCalls:
+        m_Calls: []
+    onCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+  currentRefractureCount: 0
 --- !u!1 &3313697286089640881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1554,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 599
+  m_VersionIndex: 602
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

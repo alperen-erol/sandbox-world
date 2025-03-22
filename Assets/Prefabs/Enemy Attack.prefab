@@ -660,7 +660,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 581
+  m_VersionIndex: 587
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1143,13 +1143,13 @@ MonoBehaviour:
   hammerStunCooldown: 1.25
   scepterKnockbackX: 8
   scepterKnockbackY: 3
-  scepterStunCooldown: 3
-  stoneKnockbackX: 6
-  stoneKnockbackY: 2
-  stoneStunCooldown: 0.55
-  obstacleDestructionX: 12
-  obstacleDestructionY: 12
-  obstacleStunCooldown: 4
+  scepterStunCooldown: 2
+  stoneKnockbackX: 17
+  stoneKnockbackY: 4
+  stoneStunCooldown: 1
+  obstacleDestructionX: 7
+  obstacleDestructionY: 7
+  obstacleStunCooldown: 5
   selectedForceType: 3
   knockbackDirection: {x: 0, y: 0, z: 0}
   stunDuration: 1
@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 581
+  m_VersionIndex: 587
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

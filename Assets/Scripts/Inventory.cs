@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     public GameObject Slot1;
     public GameObject Slot2;
     public GameObject Slot3;
+    public GameObject Slot4;
     public GameObject stonePrefab;
     public GameObject stonePropPrefab;
     public GameObject playerKatana;
@@ -39,8 +40,8 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        Activateslot1();
-        playerHammer.SetActive(true);
+
+
         hammerScript = hammer.GetComponent<Hammer>();
     }
 
@@ -57,6 +58,11 @@ public class Inventory : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Activateslot3();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             Activateslot3();
         }
@@ -92,6 +98,14 @@ public class Inventory : MonoBehaviour
         Slot2.SetActive(false);
         Slot3.SetActive(true);
         currentActiveSlot = 3;
+    }
+    private void Activateslot4()
+    {
+        Slot1.SetActive(false);
+        Slot2.SetActive(false);
+        Slot3.SetActive(false);
+        Slot4.SetActive(true);
+        currentActiveSlot = 4;
     }
 
 

@@ -62,60 +62,29 @@ public class StunnedState : AiState
         switch (selectedForceType)
         {
             case StunType.HammerKnockback:
-                ApplyHammerKnockBack(agent);
+                ApplyKnockback(agent, hammerKnockbackX, hammerKnockbackY, hammerStunCooldown);
                 break;
             case StunType.ScepterKnockback:
-                ApplyScepterKnockback(agent);
+                ApplyKnockback(agent, scepterKnockbackX, scepterKnockbackY, scepterStunCooldown);
                 break;
             case StunType.StoneKnockBack:
-                ApplyStoneKnockBack(agent);
+                ApplyKnockback(agent, stoneKnockbackX, stoneKnockbackY, stoneStunCooldown);
                 break;
             case StunType.ObstacleDestruction:
-                ApplyObstacleDestruction(agent);
+                ApplyKnockback(agent, obstacleDestructionX, obstacleDestructionY, obstacleStunCooldown);
                 break;
         }
     }
 
-    private void ApplyHammerKnockBack(AiAgent agent)
+
+    private void ApplyKnockback(AiAgent agent, float knockBackX, float knockBackY, float cooldown)
     {
-        Debug.Log("Applying Hammer Knockback");
+        Debug.Log("Applying Knockback: " + selectedForceType);
         knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
-        rb.AddForce(knockbackDirection * hammerKnockbackX, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * hammerKnockbackY, ForceMode.Impulse);
+        rb.AddForce(knockbackDirection * knockBackX, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * knockBackY, ForceMode.Impulse);
         StopAllCoroutines();
-        StartCoroutine(HammerStunDuration(hammerStunCooldown, agent));
-    }
-
-    private void ApplyScepterKnockback(AiAgent agent)
-    {
-        Debug.Log("Applying Scepter Knockback");
-        knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
-        rb.AddForce(knockbackDirection * scepterKnockbackX, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * scepterKnockbackY, ForceMode.Impulse);
-        StopAllCoroutines();
-        StartCoroutine(HammerStunDuration(scepterStunCooldown, agent));
-    }
-
-
-    private void ApplyObstacleDestruction(AiAgent agent)
-    {
-        Debug.Log("Object destroyed apply force");
-        knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
-        rb.AddForce(knockbackDirection * obstacleDestructionX, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * obstacleDestructionY, ForceMode.Impulse);
-        StopAllCoroutines();
-        StartCoroutine(HammerStunDuration(obstacleStunCooldown, agent));
-    }
-
-
-    private void ApplyStoneKnockBack(AiAgent agent)
-    {
-        Debug.Log("Applying stone knockback");
-        knockbackDirection = (enemyTransform.position - playerTransform.position).normalized;
-        rb.AddForce(knockbackDirection * stoneKnockbackX, ForceMode.Impulse);
-        rb.AddForce(Vector3.up * stoneKnockbackY, ForceMode.Impulse);
-        StopAllCoroutines();
-        StartCoroutine(HammerStunDuration(stoneStunCooldown, agent));
+        StartCoroutine(HammerStunDuration(cooldown, agent));
     }
 
 

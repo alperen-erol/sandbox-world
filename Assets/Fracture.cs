@@ -19,8 +19,11 @@ public class Fracture : MonoBehaviour
 
     void Start()
     {
-        enemyTrigger = this.transform.GetChild(0).gameObject;
-        det = enemyTrigger.GetComponent<DestructableEnemyTrigger>();
+        if (transform.childCount > 0)
+        {
+            enemyTrigger = this.transform.GetChild(0).gameObject;
+            det = enemyTrigger.GetComponent<DestructableEnemyTrigger>();
+        }
     }
 
 
@@ -96,7 +99,8 @@ public class Fracture : MonoBehaviour
                 if (collisionForce > triggerOptions.minimumCollisionForce &&
                    (triggerOptions.filterCollisionsByTag && tagAllowed))
                 {
-                    det.ObjectDestroyed();
+                    if (det)
+                        det.ObjectDestroyed();
                     callbackOptions.CallOnFracture(contact.otherCollider, gameObject, contact.point);
                     this.ComputeFracture();
                 }
