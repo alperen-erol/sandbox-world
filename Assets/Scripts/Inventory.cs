@@ -64,7 +64,7 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Activateslot3();
+            Activateslot4();
         }
 
         if (Input.GetKeyUp(KeyCode.E) && heldItem != null)
@@ -81,6 +81,7 @@ public class Inventory : MonoBehaviour
         Slot1.SetActive(true);
         Slot2.SetActive(false);
         Slot3.SetActive(false);
+        Slot4.SetActive(false);
         currentActiveSlot = 1;
     }
     private void Activateslot2()
@@ -88,6 +89,8 @@ public class Inventory : MonoBehaviour
         Slot1.SetActive(false);
         Slot2.SetActive(true);
         Slot3.SetActive(false);
+        Slot4.SetActive(false);
+
         InstantiateBall();
         currentActiveSlot = 2;
     }
@@ -97,6 +100,8 @@ public class Inventory : MonoBehaviour
         Slot1.SetActive(false);
         Slot2.SetActive(false);
         Slot3.SetActive(true);
+        Slot4.SetActive(false);
+
         currentActiveSlot = 3;
     }
     private void Activateslot4()

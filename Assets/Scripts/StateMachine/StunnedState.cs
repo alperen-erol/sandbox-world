@@ -26,6 +26,11 @@ public class StunnedState : AiState
     [SerializeField] private float obstacleDestructionY;
     [SerializeField] private float obstacleStunCooldown;
 
+    [Header("Obstacle Destruction")]
+    [SerializeField] private float soulKnockbackX;
+    [SerializeField] private float soulKnockbackY;
+    [SerializeField] private float soulKnockbackCooldown;
+
     //aistatedeki stun tipi kulandım
     public StunType selectedForceType;
 
@@ -34,6 +39,7 @@ public class StunnedState : AiState
     float knockbackForce;
     [SerializeField] float stunDuration;
 
+    public Vector3 ballPos;
     Transform player;
     Transform enemyTransform;
     Transform playerTransform;
@@ -73,7 +79,22 @@ public class StunnedState : AiState
             case StunType.ObstacleDestruction:
                 ApplyKnockback(agent, obstacleDestructionX, obstacleDestructionY, obstacleStunCooldown);
                 break;
+            case StunType.SoulKnockback:
+                ApplySoulKnockback(agent);
+                break;
+
         }
+    }
+
+
+    private void ApplySoulKnockback(AiAgent agent)
+    {
+        Debug.Log("Applying Knockback: " + selectedForceType);
+        knockbackDirection = (enemyTransform.position - ballPos).normalized;
+        rb.AddForce(knockbackDirection * soulKnockbackX, ForceMode.Impulse);
+        rb.AddForce(Vector3.up * knockbackDirectionY, ForceMode.Impulse);
+        StopAllCoroutines();
+        StartCoroutine(HammerStunDuration(soulKnockbackCooldown, agent));
     }
 
 

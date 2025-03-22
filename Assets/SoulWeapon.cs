@@ -23,7 +23,7 @@ public class SoulWeapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1) && !animator.GetCurrentAnimatorStateInfo(0).IsName("SoulWeaponShoot"))
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, weaponTip.position);
@@ -61,7 +61,10 @@ public class SoulWeapon : MonoBehaviour
         {
             gatheredSoulAmount -= 5;
             InstantiateSoulProjectile();
+            animator.SetTrigger("Shoot");
         }
+        else
+            animator.SetTrigger("Empty");
     }
 
 

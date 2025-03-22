@@ -16,6 +16,7 @@ public enum StunType
     HammerKnockback,
     ScepterKnockback,
     StoneKnockBack,
+    SoulKnockback,
     ObstacleDestruction
 }
 

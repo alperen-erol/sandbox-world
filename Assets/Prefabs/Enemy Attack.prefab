@@ -910,10 +910,10 @@ GameObject:
   - component: {fileID: 7763997775790946179}
   - component: {fileID: 6803502599567833731}
   - component: {fileID: 5712275218622267452}
+  - component: {fileID: 5576179188542942546}
   - component: {fileID: 5374943742663186725}
   - component: {fileID: 8017412526380978698}
   - component: {fileID: 404988140719894833}
-  - component: {fileID: 5576179188542942546}
   - component: {fileID: 8813475968121244831}
   - component: {fileID: 7355441906952067127}
   m_Layer: 12
@@ -1066,6 +1066,38 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!114 &5576179188542942546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431953968018474580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcd9bbaacae7a341b8dbc7815cd8e9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5
+  hammerKnockbackX: 22
+  hammerKnockbackY: 6
+  hammerStunCooldown: 1.25
+  scepterKnockbackX: 8
+  scepterKnockbackY: 3
+  scepterStunCooldown: 2
+  stoneKnockbackX: 17
+  stoneKnockbackY: 4
+  stoneStunCooldown: 1
+  obstacleDestructionX: 7
+  obstacleDestructionY: 7
+  obstacleStunCooldown: 5
+  soulKnockbackX: 0
+  soulKnockbackY: 0
+  soulKnockbackCooldown: 0
+  selectedForceType: 3
+  knockbackDirection: {x: 0, y: 0, z: 0}
+  stunDuration: 1
+  ballPos: {x: 0, y: 0, z: 0}
 --- !u!114 &5374943742663186725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1125,34 +1157,6 @@ MonoBehaviour:
   id: 7
   chaseSpeed: 9
   attackSpeed: 4
---- !u!114 &5576179188542942546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8431953968018474580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bcd9bbaacae7a341b8dbc7815cd8e9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 5
-  hammerKnockbackX: 22
-  hammerKnockbackY: 6
-  hammerStunCooldown: 1.25
-  scepterKnockbackX: 8
-  scepterKnockbackY: 3
-  scepterStunCooldown: 2
-  stoneKnockbackX: 17
-  stoneKnockbackY: 4
-  stoneStunCooldown: 1
-  obstacleDestructionX: 7
-  obstacleDestructionY: 7
-  obstacleStunCooldown: 5
-  selectedForceType: 3
-  knockbackDirection: {x: 0, y: 0, z: 0}
-  stunDuration: 1
 --- !u!114 &8813475968121244831
 MonoBehaviour:
   m_ObjectHideFlags: 0

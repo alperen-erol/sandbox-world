@@ -151,3 +151,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 20
   power: 20
+  BallImpactExpllosion: {fileID: 8946373014701921611, guid: 8dd1a8ed7f65c5947a6ebbfff601532e, type: 3}
