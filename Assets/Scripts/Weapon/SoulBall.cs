@@ -17,6 +17,8 @@ public class SoulBall : MonoBehaviour
             {
                 AiAgent agent = hit.GetComponent<AiAgent>();
                 StunnedState ss = hit.GetComponent<StunnedState>();
+                EnemyHealth health = hit.GetComponent<EnemyHealth>();
+                health.enemyHealth -= 20;
                 ss.selectedForceType = StunType.SoulKnockback;
                 ss.ballPos = this.transform.position;
                 agent.stateMachine.ChangeState(AiStateId.StunnedState);

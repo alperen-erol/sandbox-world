@@ -24,7 +24,8 @@ public class ChasePlayerState : AiState
         enemyTransform = agent.enemyTransform;
         playerCheckRadius = agent.config.playerCheckRadius;
         whatIsPlayer = agent.whatIsPlayer;
-        enemyAgent.speed = 16;
+
+        chaseSpeed = Random.Range(3, 15);
         rb = GetComponent<Rigidbody>();
         if (this.gameObject.tag == "TITAN")
             rb.isKinematic = false;

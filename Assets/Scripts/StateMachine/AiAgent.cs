@@ -22,6 +22,7 @@ public class AiAgent : MonoBehaviour
     void Start()
     {
         stateMachine = new AiStateMachine(this);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
 
         stateMachine.states = states;
 
