@@ -134,7 +134,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &6628377874490956887
@@ -149,6 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a9f4c0f79e12d47b41c10d300625c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 20
+  radius: 16
   power: 20
   BallImpactExpllosion: {fileID: 8946373014701921611, guid: 8dd1a8ed7f65c5947a6ebbfff601532e, type: 3}

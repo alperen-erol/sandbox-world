@@ -25,7 +25,7 @@ public class ChasePlayerState : AiState
         playerCheckRadius = agent.config.playerCheckRadius;
         whatIsPlayer = agent.whatIsPlayer;
 
-        chaseSpeed = Random.Range(3, 15);
+        chaseSpeed = Random.Range(2, 5);
         rb = GetComponent<Rigidbody>();
         if (this.gameObject.tag == "TITAN")
             rb.isKinematic = false;

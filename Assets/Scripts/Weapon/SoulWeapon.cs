@@ -11,6 +11,7 @@ public class SoulWeapon : MonoBehaviour
     [SerializeField] float gatherSoulRate;
     [SerializeField] float soulThrowForce;
     [SerializeField] float soulDistance;
+    [SerializeField] float shootCost;
 
     [SerializeField] Light weaponLight;
 
@@ -44,7 +45,7 @@ public class SoulWeapon : MonoBehaviour
     EnemyHealth health;
     void Update()
     {
-        weaponLight.intensity = gatheredSoulAmount / 140;
+        weaponLight.intensity = gatheredSoulAmount / 100;
         emission.rateOverTime = gatheredSoulAmount * 5;
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
@@ -127,9 +128,9 @@ public class SoulWeapon : MonoBehaviour
 
     private void FireSoul()
     {
-        if (gatheredSoulAmount >= 5)
+        if (gatheredSoulAmount >= shootCost)
         {
-            gatheredSoulAmount -= 5;
+            gatheredSoulAmount -= shootCost;
             InstantiateSoulProjectile();
             animator.SetTrigger("Shoot");
         }
