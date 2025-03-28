@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance;
+
+
     [Header("Spawn Area")]
     [SerializeField] private Vector3 spawnAreaSize = new Vector3(10f, 0f, 10f);
     [SerializeField] private float edgeBuffer = 1f;
@@ -14,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy")]
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnHeight = 0.5f;
+    public float enemyRandomSpeedMin, EnemyRandomSpeedMax;
 
     [Header("Round Settings")]
     [SerializeField] private int initialEnemyCount = 5;
@@ -24,6 +28,19 @@ public class EnemySpawner : MonoBehaviour
     private int currentRound = 0;
     private int enemiesRemaining = 0;
     private List<GameObject> activeEnemies = new List<GameObject>();
+
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+            Destroy(gameObject);
+    }
+
+
 
     private void Start()
     {

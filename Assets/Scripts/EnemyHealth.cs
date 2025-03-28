@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-        mainCamera = Camera.main.transform;
+        
     }
 
 

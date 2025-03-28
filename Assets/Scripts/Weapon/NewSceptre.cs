@@ -41,6 +41,8 @@ public class NewSceptre : MonoBehaviour
             {
                 grabbedRB.linearDamping = 0f;
                 grabbedRB.AddForce(cam.transform.forward * throwForce, ForceMode.Impulse);
+                TNT tnt = grabbedRB.GetComponent<TNT>();
+                tnt.explosiveMode = true;
                 grabbedRB = null;
             }
 

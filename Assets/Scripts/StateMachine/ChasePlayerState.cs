@@ -11,12 +11,14 @@ public class ChasePlayerState : AiState
     float playerCheckRadius;
     LayerMask whatIsPlayer;
     Rigidbody rb;
-
+    private float minSpeed, maxSpeed;
     [SerializeField] float chaseSpeed, attackSpeed;
 
 
     public override void Enter(AiAgent agent)
     {
+        minSpeed = EnemySpawner.Instance.enemyRandomSpeedMin;
+        minSpeed = EnemySpawner.Instance.EnemyRandomSpeedMax;
         Debug.Log("Chase Player State Entered");
         enemyAgent = agent.NavMeshAgent;
         enemyAgent.enabled = true;
@@ -25,7 +27,7 @@ public class ChasePlayerState : AiState
         playerCheckRadius = agent.config.playerCheckRadius;
         whatIsPlayer = agent.whatIsPlayer;
 
-        chaseSpeed = Random.Range(2, 5);
+        chaseSpeed = Random.Range(minSpeed, maxSpeed);
         rb = GetComponent<Rigidbody>();
         if (this.gameObject.tag == "TITAN")
             rb.isKinematic = false;
