@@ -5551,7 +5551,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 674
+  m_VersionIndex: 677
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5973,9 +5973,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 5
-  hammerKnockbackX: 22
-  hammerKnockbackY: 6
-  hammerStunCooldown: 1.25
+  hammerKnockbackX: 8
+  hammerKnockbackY: 3
+  hammerStunCooldown: 0.6
   scepterKnockbackX: 8
   scepterKnockbackY: 3
   scepterStunCooldown: 2
@@ -6348,7 +6348,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 674
+  m_VersionIndex: 677
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

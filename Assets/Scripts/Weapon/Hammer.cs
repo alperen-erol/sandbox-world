@@ -6,9 +6,16 @@ using UnityEngine;
 public class Hammer : MonoBehaviour
 {
     Animator animator;
+    private int comboStep = 0;
+    private float comboTimer = 0f;
+    private float comboWindow = 0.3f;
+    private bool isAttacking = false;
+
+
     new BoxCollider collider;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip bonk;
+    [SerializeField] AudioClip swoosh;
     [SerializeField] TMP_Text durabilityText;
     [SerializeField] Animator camAnimator;
     [SerializeField] float hammerDamage;
@@ -26,6 +33,14 @@ public class Hammer : MonoBehaviour
 
     void Update()
     {
+
+
+
+
+
+
+
+
         if (durability <= 0)
         {
             durabilityText.text = "Weapon Broken";
@@ -39,7 +54,13 @@ public class Hammer : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             animator.SetTrigger("Attack");
-            camAnimator.SetTrigger("HammerSwing");
+            animator.SetBool("Combo1", true);
+            animator.SetBool("Combo2", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            animator.SetBool("Combo1", false);
+            animator.SetBool("Combo2", false);
         }
 
 
@@ -59,7 +80,11 @@ public class Hammer : MonoBehaviour
     void DisableWeaponCollider()
     {
         collider.enabled = false;
+    }
 
+    void PlaySwooshSound()
+    {
+        audioSource.PlayOneShot(swoosh);
     }
 
     void OnTriggerEnter(Collider other)
