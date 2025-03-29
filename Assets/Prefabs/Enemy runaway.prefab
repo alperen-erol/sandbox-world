@@ -556,8 +556,8 @@ GameObject:
   - component: {fileID: 6568068632822170895}
   - component: {fileID: 5224504193778652601}
   - component: {fileID: 6720784749284612229}
-  - component: {fileID: 5327535442935474971}
-  - component: {fileID: 3564713961071485487}
+  - component: {fileID: 2154767058368786495}
+  - component: {fileID: 5464343289639957305}
   m_Layer: 12
   m_Name: Enemy runaway
   m_TagString: Enemy
@@ -696,9 +696,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   states:
-  - {fileID: 5327535442935474971}
-  - {fileID: 3564713961071485487}
-  initialState: 1
+  - {fileID: 5464343289639957305}
+  - {fileID: 2154767058368786495}
+  initialState: 0
   NavMeshAgent: {fileID: 109154767580093862}
   player: {fileID: 0}
   enemyTransform: {fileID: 4972853134724166368}
@@ -739,7 +739,7 @@ MonoBehaviour:
   playerCheckRadius: 0
   playerAttackRadius: 0
   enemyTransform: {fileID: 4972853134724166368}
---- !u!114 &5327535442935474971
+--- !u!114 &2154767058368786495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -748,26 +748,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8116789078396115864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd09c95ad85b6f7429b5f08ed2537436, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c0200370e9f5a6469efa51cd12d7350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemyAgent: {fileID: 109154767580093862}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 512
-  config: {fileID: 11400000, guid: e6128660ed152e943ac22d3bd8f66280, type: 2}
-  selectedIndex: 0
-  previousIndex: 0
-  isWalkPointSet: 0
---- !u!114 &3564713961071485487
+  id: 4
+  config: {fileID: 11400000, guid: 1b94a27fceb798847b0314b01d780d70, type: 2}
+--- !u!114 &5464343289639957305
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -776,19 +762,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8116789078396115864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e2c4e7029d391e43a2402815c5c47cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d46425b5a37f7849a8020ffeeb1ed6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 2
-  waypoints: []
-  config: {fileID: 11400000, guid: 6693005f4e030e542b66fad156082824, type: 2}
-  enemyAgent: {fileID: 109154767580093862}
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 512
-  selectedIndex: 0
-  previousIndex: 0
+  id: 0
+  FinishState: 4
+  walkPoint: {x: 0, y: 0, z: 0}
   isWalkPointSet: 0
-  distance: 0
-  maxDistance: 0
-  foundFarthestWaypoint: 0
+  walkpointDebug: {fileID: 0}

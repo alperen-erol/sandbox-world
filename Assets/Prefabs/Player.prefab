@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9980ad439d0f6544a8d8e3a692a80e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 9
+  walkSpeed: 8
   sprintSpeed: 0
   slideSpeed: 22
   desiredMoveSpeed: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   slopeIncreaseMultiplier: 1.5
   groundDrag: 4
   airDrag: 0
-  jumpForce: 6
+  jumpForce: 14
   jumpCooldown: 0.15
   airMultiplier: 1
   crouchSpeed: 4
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6440a5ba482a21479c42197f5696a46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2000
+  health: 150
   audioSource: {fileID: 6304236714637275088}
   hitsound: {fileID: 8300000, guid: 744777060d671db48b1db0b8d2cc1a99, type: 3}
   animator: {fileID: 0}
