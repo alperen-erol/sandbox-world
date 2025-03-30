@@ -1,64 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &130839244896864710
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7545038095541169139}
-  - component: {fileID: 4514237802811040070}
-  m_Layer: 0
-  m_Name: Holder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7545038095541169139
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130839244896864710}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.34, z: 4.14}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1925534522327908993}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &4514237802811040070
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130839244896864710}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1453300615918811327
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,11 +68,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7545038095541169139}
   - {fileID: 5581425856541900511}
   - {fileID: 5115014140072057476}
   - {fileID: 5810457166941018344}
   - {fileID: 7529945333681370173}
+  - {fileID: 3055099126993840146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2382988705583687433
@@ -320,6 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af059b17be089e348835ab2d7d96bf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tiltAmount: 5.5
+  mouseTiltAmount: 5
+  tiltSpeed: 4
+  currentTilt: 0
+  tiltLimit: 8
 --- !u!1 &3863262389274095010
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +296,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2441040330895532940}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5052389504471051244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3055099126993840146}
+  m_Layer: 0
+  m_Name: CamOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3055099126993840146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5052389504471051244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1925534522327908993}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7130263087722279905
 GameObject:
@@ -569,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4177e3bde3ddb374e96355536e8dc718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Holder: {fileID: 130839244896864710}
+  Holder: {fileID: 0}
   weaponOnCooldown: 0
 --- !u!114 &227799652397205499
 MonoBehaviour:
@@ -587,7 +564,7 @@ MonoBehaviour:
   maxGrabDistance: 10
   throwForce: 800
   lerpSpeed: 150
-  objectHolder: {fileID: 7545038095541169139}
+  objectHolder: {fileID: 0}
   energyText: {fileID: 0}
   energy: 100
   energyConsumeRate: 0.1
@@ -715,6 +692,22 @@ PrefabInstance:
       propertyPath: hammerPanTiltspeed
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 526992905675313561, guid: 2c724acff0b6c4f44b83051946693232, type: 3}
+      propertyPath: hitSoundEffects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 526992905675313561, guid: 2c724acff0b6c4f44b83051946693232, type: 3}
+      propertyPath: 'hitSoundEffects.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 0e1be27c0319513489b3f5e5e9c467f3, type: 3}
+    - target: {fileID: 526992905675313561, guid: 2c724acff0b6c4f44b83051946693232, type: 3}
+      propertyPath: 'hitSoundEffects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8e815e0ca7204bc4287bb48e365b67b0, type: 3}
+    - target: {fileID: 526992905675313561, guid: 2c724acff0b6c4f44b83051946693232, type: 3}
+      propertyPath: 'hitSoundEffects.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 34d5d51db3a4bd044a0c3bb5bfc245a4, type: 3}
     - target: {fileID: 1563553559320903221, guid: 2c724acff0b6c4f44b83051946693232, type: 3}
       propertyPath: m_Name
       value: Hammer

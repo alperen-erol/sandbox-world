@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     public GameObject playerKatanaProp;
     public GameObject playerHammer;
     public GameObject playerHammerProp;
+    public GameObject Wand;
     public GameObject CameraHolder;
     public GameObject hammer;
     Hammer hammerScript;
@@ -257,6 +258,19 @@ public class Inventory : MonoBehaviour
                     }
                     hammer.gameObject.SetActive(true);
                     hammerScript.durability = hammerProp.hammerDurability;
+                    Destroy(hit.collider.gameObject);
+                }
+            }
+
+            else if (hit.collider.tag == "Wand")
+            {
+                pickupText.text = "Press E to pick up The Soul Wand ";
+                pickupText.gameObject.SetActive(true);
+                itemDetected = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Wand.gameObject.SetActive(true);
+                    Activateslot4();
                     Destroy(hit.collider.gameObject);
                 }
             }

@@ -14,6 +14,7 @@ public class Hammer : MonoBehaviour
 
     new BoxCollider collider;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] hitSoundEffects;
     [SerializeField] AudioClip bonk;
     [SerializeField] AudioClip swoosh;
     [SerializeField] TMP_Text durabilityText;
@@ -33,13 +34,6 @@ public class Hammer : MonoBehaviour
 
     void Update()
     {
-
-
-
-
-
-
-
 
         if (durability <= 0)
         {
@@ -104,7 +98,7 @@ public class Hammer : MonoBehaviour
                 eh.TakeHammerDamage(hammerDamage);
                 ss.selectedForceType = StunType.HammerKnockback;
                 enemyAgent.stateMachine.ChangeState(AiStateId.StunnedState);
-                audioSource.PlayOneShot(bonk);
+                audioSource.PlayOneShot(hitSoundEffects[Random.Range(0, 3)]);
                 durability--;
             }
 

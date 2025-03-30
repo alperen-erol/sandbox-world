@@ -1,25 +1,29 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    private Animator animator;
+    CinemachineCamera cinemachineCam;
+    [SerializeField] float tiltAmount = 5f;
+    [SerializeField] float mouseTiltAmount = 5f;
+    [SerializeField] float tiltSpeed = 5f;
+    [SerializeField] float currentTilt = 0f;
 
+    [SerializeField] float tiltLimit;
+    float lookInput, targetTilt, input;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        cinemachineCam = GetComponent<CinemachineCamera>();
     }
 
     void Update()
     {
-        bool isMoving = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
-
-        if (isMoving)
-        {
-            animator.SetBool("CameraBob", true);
-        }
-        else
-        {
-            animator.SetBool("CameraBob", false);
-        }
+        lookInput = Input.GetAxis("Mouse X");
+        input = Input.GetAxis("Horizontal");
+        targetTilt = -input * tiltAmount;
+        targetTilt += -lookInput * mouseTiltAmount;
+        currentTilt = Mathf.Lerp(currentTilt, targetTilt, Time.deltaTime * tiltSpeed);
+        currentTilt = Mathf.Clamp(currentTilt, -tiltLimit, tiltLimit);
+        cinemachineCam.Lens.Dutch = currentTilt;
     }
 }
