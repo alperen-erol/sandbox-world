@@ -11,15 +11,15 @@ public class Hammer : MonoBehaviour
     private float comboWindow = 0.3f;
     private bool isAttacking = false;
 
-
     new BoxCollider collider;
     [SerializeField] AudioSource audioSource;
     [SerializeField] AudioClip[] hitSoundEffects;
+    [SerializeField] AudioClip[] swingSoundEffects;
     [SerializeField] AudioClip bonk;
-    [SerializeField] AudioClip swoosh;
     [SerializeField] TMP_Text durabilityText;
     [SerializeField] Animator camAnimator;
-    [SerializeField] float hammerDamage;
+    public float hammerDamage;
+    public float animSpeed;
     public float HammerCooldown = 0.5f, hammerPanTiltspeed;
     public float HammerCooldownTimer;
     public float durability;
@@ -34,7 +34,8 @@ public class Hammer : MonoBehaviour
 
     void Update()
     {
-
+        animator.SetFloat("AnimSpeed", AxeManager.Instance.axeAttackSpeed);
+        hammerDamage = AxeManager.Instance.axeAttackDamage;
         if (durability <= 0)
         {
             durabilityText.text = "Weapon Broken";
@@ -78,7 +79,7 @@ public class Hammer : MonoBehaviour
 
     void PlaySwooshSound()
     {
-        audioSource.PlayOneShot(swoosh);
+        audioSource.PlayOneShot(swingSoundEffects[Random.Range(0, 2)]);
     }
 
     void OnTriggerEnter(Collider other)

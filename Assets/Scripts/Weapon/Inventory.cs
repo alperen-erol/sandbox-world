@@ -275,6 +275,16 @@ public class Inventory : MonoBehaviour
                 }
             }
 
+            else if (hit.collider.tag == "BuyButton")
+            {
+                pickupText.text = "Press E to Buy The Upgrade ";
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    AxeUpgrade au = hit.collider.GetComponent<AxeUpgrade>();
+                    au.HandleUpgrade();
+                }
+            }
+
 
             if (hit.collider.CompareTag("PickupItem"))
             {

@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
 
@@ -28,8 +28,9 @@ public class EnemyHealth : MonoBehaviour
             DrainEnemyHealth(gatherSoulRate);
         healthText.text = Mathf.RoundToInt(enemyHealth).ToString();
         healthBarCanvas.LookAt(mainCamera);
-        if (enemyHealth <= 0)
+        if (enemyHealth <= 0.9)
         {
+            PlayerInventory.Instance.money += 50;
             isDead = true;
             Destroy(this.gameObject);
         }

@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Spawn Area")]
     [SerializeField] private Vector3 spawnAreaSize = new Vector3(10f, 0f, 10f);
-    [SerializeField] private float edgeBuffer = 1f;
+    // [SerializeField] private float edgeBuffer = 1f;
     [SerializeField] private LayerMask obstacleLayerMask;
     [SerializeField] private float minDistanceFromObstacles = 1f;
 
@@ -93,8 +93,8 @@ public class EnemySpawner : MonoBehaviour
 
         do
         {
-            float xPos = Random.Range(-spawnAreaSize.x / 2 + edgeBuffer, spawnAreaSize.x / 2 - edgeBuffer);
-            float zPos = Random.Range(-spawnAreaSize.z / 2 + edgeBuffer, spawnAreaSize.z / 2 - edgeBuffer);
+            float xPos = Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2);
+            float zPos = Random.Range(-spawnAreaSize.z / 2, spawnAreaSize.z / 2);
 
             spawnPos = transform.position + new Vector3(xPos, spawnHeight, zPos);
 
@@ -126,7 +126,7 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, spawnAreaSize);
 
         Gizmos.color = Color.yellow;
-        Vector3 innerSize = new Vector3(spawnAreaSize.x - edgeBuffer * 2, spawnAreaSize.y, spawnAreaSize.z - edgeBuffer * 2);
+        Vector3 innerSize = new Vector3(spawnAreaSize.x * 2, spawnAreaSize.y, spawnAreaSize.z * 2);
         Gizmos.DrawWireCube(transform.position, innerSize);
     }
 }

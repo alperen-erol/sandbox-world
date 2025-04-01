@@ -45,7 +45,7 @@ public class SoulWeapon : MonoBehaviour
     EnemyHealth health;
     void Update()
     {
-        weaponLight.intensity = gatheredSoulAmount / 100;
+        weaponLight.intensity = gatheredSoulAmount / 40;
         emission.rateOverTime = gatheredSoulAmount * 5;
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {

@@ -5108,6 +5108,7 @@ MonoBehaviour:
   gatherSoulRate: 10
   soulThrowForce: 30
   soulDistance: 50
+  shootCost: 0
   weaponLight: {fileID: 3433393243600406933}
   SoulGatherParticles: {fileID: 7320924937721380817}
   emissionRate: 20
