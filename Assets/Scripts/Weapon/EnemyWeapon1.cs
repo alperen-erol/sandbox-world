@@ -5,9 +5,6 @@ using UnityEngine;
 public class EnemyWeapon1 : MonoBehaviour
 {
     BoxCollider boxCollider;
-    [SerializeField] Transform enemyTransform;
-    [SerializeField] Transform playerTransform;
-    Vector3 knockbackDirection;
     [SerializeField] float knocbackForce = 10f;
     [SerializeField] float knocbackForceY = 10f;
 
@@ -15,7 +12,7 @@ public class EnemyWeapon1 : MonoBehaviour
     void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
-        knockbackDirection = (playerTransform.position - enemyTransform.position).normalized;
+
     }
 
 
@@ -26,21 +23,29 @@ public class EnemyWeapon1 : MonoBehaviour
 
 
     [SerializeField] private float damage = 20f;
-    void OnCollisionEnter(Collision collision)
+
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.collider.tag == "Player")
+        if (other.tag == "Player")
         {
             Debug.Log("player hit");
-            GameObject player = collision.collider.gameObject;
+            GameObject player = other.gameObject;
             if (player != null)
             {
                 player.GetComponent<PlayerHealth>().TakeDamage(damage);
-                StartCoroutine(HitCooldown());
-                Rigidbody playerrb = player.GetComponent<Rigidbody>();
+                Rigidbody playerrb = other.GetComponent<Rigidbody>();
+                Vector3 knockbackDirection = (playerrb.transform.position - this.transform.position).normalized;
+                playerrb.linearVelocity = Vector3.zero;
                 playerrb.AddForce(knockbackDirection * knocbackForce, ForceMode.Impulse);
                 playerrb.AddForce(Vector3.up * knocbackForceY, ForceMode.Impulse);
+                StartCoroutine(HitCooldown());
             }
         }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+
     }
 
 

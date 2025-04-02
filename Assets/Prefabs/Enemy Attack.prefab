@@ -5551,7 +5551,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 689
+  m_VersionIndex: 719
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5653,7 +5653,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3908854248800506992
 Transform:
   m_ObjectHideFlags: 0
@@ -5663,7 +5663,7 @@ Transform:
   m_GameObject: {fileID: 5574886366410688437}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.45}
+  m_LocalPosition: {x: 0, y: 0, z: 1.469}
   m_LocalScale: {x: 0.8749271, y: 1.8322, z: 0.1809476}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5737,7 +5737,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5755,11 +5755,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7887fe36f243246875a2ade602ea9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyTransform: {fileID: 7915811122959248461}
-  playerTransform: {fileID: 0}
-  knocbackForce: 40
-  knocbackForceY: 40
-  damage: 20
+  knocbackForce: 10
+  knocbackForceY: 2
+  damage: 50
 --- !u!54 &7372347396272366882
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5808,6 +5806,7 @@ GameObject:
   - component: {fileID: 8813475968121244831}
   - component: {fileID: 7355441906952067127}
   - component: {fileID: 4522500207499706639}
+  - component: {fileID: 7033097706675322410}
   m_Layer: 12
   m_Name: Enemy Attack
   m_TagString: EnemyAttack
@@ -6101,6 +6100,47 @@ MonoBehaviour:
   healthText: {fileID: 4449799586367784001}
   healthBarCanvas: {fileID: 4346383352670519719}
   mainCamera: {fileID: 0}
+--- !u!114 &7033097706675322410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8431953968018474580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 199fb8e32bb0b0344ac336f8e3e8ca46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOptions:
+    triggerType: 0
+    minimumCollisionForce: 0
+    filterCollisionsByTag: 0
+    triggerAllowedTags: []
+    triggerKey: 0
+  fractureOptions:
+    fragmentCount: 15
+    xAxis: 1
+    yAxis: 1
+    zAxis: 1
+    detectFloatingFragments: 0
+    asynchronous: 0
+    insideMaterial: {fileID: 0}
+    textureScale: {x: 1, y: 1}
+    textureOffset: {x: 0, y: 0}
+  refractureOptions:
+    enableRefracturing: 0
+    maxRefractureCount: 1
+    invokeCallbacks: 0
+  callbackOptions:
+    onFracture:
+      m_PersistentCalls:
+        m_Calls: []
+    onCompleted:
+      m_PersistentCalls:
+        m_Calls: []
+  explosionForce: 5
+  currentRefractureCount: 0
 --- !u!1 &8708204559500157002
 GameObject:
   m_ObjectHideFlags: 0
@@ -6348,7 +6388,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 689
+  m_VersionIndex: 719
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

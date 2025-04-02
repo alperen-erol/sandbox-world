@@ -23,6 +23,6 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         audioSource.PlayOneShot(hitsound);
-        animator.SetTrigger("TakeDamage");
+        // animator.SetTrigger("TakeDamage");
     }
 }

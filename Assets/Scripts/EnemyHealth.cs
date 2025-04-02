@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
         {
             PlayerInventory.Instance.money += 50;
             isDead = true;
-            Destroy(this.gameObject);
+            // Destroy(this.gameObject);
         }
 
 
