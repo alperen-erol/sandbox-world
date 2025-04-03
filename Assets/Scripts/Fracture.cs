@@ -21,7 +21,6 @@ public class Fracture : MonoBehaviour
 
     void Start()
     {
-        eh = GetComponent<EnemyHealth>();
         if (transform.childCount > 0)
         {
             enemyTrigger = transform.GetChild(0).gameObject;
@@ -66,8 +65,6 @@ public class Fracture : MonoBehaviour
 
     void Update()
     {
-        if (eh.enemyHealth < 1)
-            ComputeFracture();
         if (triggerOptions.triggerType == TriggerType.Keyboard && Input.GetKeyDown(triggerOptions.triggerKey))
         {
             callbackOptions.CallOnFracture(null, gameObject, transform.position);
@@ -75,7 +72,7 @@ public class Fracture : MonoBehaviour
         }
     }
 
-    private void ComputeFracture()
+    public void ComputeFracture()
     {
         var mesh = GetComponent<MeshFilter>().sharedMesh;
         if (mesh != null)
@@ -90,10 +87,11 @@ public class Fracture : MonoBehaviour
             }
 
             var fragmentTemplate = CreateFragmentTemplate();
+
             Fragmenter.Fracture(gameObject, fractureOptions, fragmentTemplate, fragmentRoot.transform);
             Destroy(fragmentTemplate);
-            gameObject.SetActive(false);
             ApplyRandomForce();
+            Destroy(this.gameObject);
         }
     }
 

@@ -1,16 +1,17 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] ParticleSystem SoulParticles;
+    Fracture fracture;
     public float enemyHealth;
     public float gatherSoulRate;
     public float hammerDamage;
     public float hammerDamageCooldown;
     public float hammerDamageCooldownTimer;
     public bool isDrain = false, isDead = false, isEnemyHit = false;
-
     public TMP_Text healthText;
     public Transform healthBarCanvas;
     public Transform mainCamera;
@@ -18,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Start()
     {
-
+        fracture = GetComponent<Fracture>();
     }
 
 
@@ -32,6 +33,7 @@ public class EnemyHealth : MonoBehaviour
         {
             PlayerInventory.Instance.money += 50;
             isDead = true;
+            fracture.ComputeFracture();
             // Destroy(this.gameObject);
         }
 
@@ -43,6 +45,13 @@ public class EnemyHealth : MonoBehaviour
         }
         else
             isEnemyHit = true;
+    }
+
+
+    public void TakeDamage(float damage)
+    {
+        enemyHealth -= damage;
+        Debug.Log("ENEMY TOOK " + damage + " DAMAGE");
     }
 
 

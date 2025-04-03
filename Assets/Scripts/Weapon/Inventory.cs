@@ -10,8 +10,6 @@ public class Inventory : MonoBehaviour
     public GameObject Slot2;
     public GameObject Slot3;
     public GameObject Slot4;
-    public GameObject stonePrefab;
-    public GameObject stonePropPrefab;
     public GameObject playerKatana;
     public GameObject playerKatanaProp;
     public GameObject playerHammer;
@@ -33,7 +31,6 @@ public class Inventory : MonoBehaviour
     public float springMaxDistance;
     [SerializeField] float throwPropForce;
 
-    public float stoneCount = 0;
     public bool playerHasBalls = false;
     public bool itemDetected = false;
     public int currentActiveSlot = 0;
@@ -92,7 +89,6 @@ public class Inventory : MonoBehaviour
         Slot3.SetActive(false);
         Slot4.SetActive(false);
 
-        InstantiateBall();
         currentActiveSlot = 2;
     }
 
@@ -125,43 +121,43 @@ public class Inventory : MonoBehaviour
                 InstantiateHammerProp();
                 playerHammer.SetActive(false);
             }
-            else if (currentActiveSlot == 2)
-            {
-                if (playerHasBalls == true)
-                {
-                    InstantiateBallProp();
-                    stoneCount--;
-                    if (stoneCount == 0)
-                    {
-                        playerHasBalls = false;
-                        destroyBallInHand = true;
-                    }
-                }
-            }
+            // else if (currentActiveSlot == 2)
+            // {
+            //     if (playerHasBalls == true)
+            //     {
+            //         InstantiateBallProp();
+            //         stoneCount--;
+            //         if (stoneCount == 0)
+            //         {
+            //             playerHasBalls = false;
+            //             destroyBallInHand = true;
+            //         }
+            //     }
+            // }
         }
     }
 
 
-    public void InstantiateBall()
-    {
-        if (stoneCount > 0 && playerHasBalls == false)
-        {
-            destroyBallInHand = false;
-            Instantiate(stonePrefab, Slot3.transform.position, Slot3.transform.rotation, Slot3.transform);
-            playerHasBalls = true;
-        }
-    }
+    // public void InstantiateBall()
+    // {
+    //     if (stoneCount > 0 && playerHasBalls == false)
+    //     {
+    //         destroyBallInHand = false;
+    //         Instantiate(stonePrefab, Slot3.transform.position, Slot3.transform.rotation, Slot3.transform);
+    //         playerHasBalls = true;
+    //     }
+    // }
 
 
-    public void InstantiateBallProp()
-    {
-        if (stoneCount > 0 && playerHasBalls == true)
-        {
-            GameObject newStone = Instantiate(stonePropPrefab, Slot3.transform.position, Slot3.transform.rotation);
-            StartCoroutine(DelayedForce(newStone, Slot3.transform.forward * throwPropForce));
-            playerHasBalls = true;
-        }
-    }
+    // public void InstantiateBallProp()
+    // {
+    //     if (stoneCount > 0 && playerHasBalls == true)
+    //     {
+    //         GameObject newStone = Instantiate(stonePropPrefab, Slot3.transform.position, Slot3.transform.rotation);
+    //         StartCoroutine(DelayedForce(newStone, Slot3.transform.forward * throwPropForce));
+    //         playerHasBalls = true;
+    //     }
+    // }
 
 
     // private void InstantiateKatanaProp()
@@ -200,24 +196,24 @@ public class Inventory : MonoBehaviour
             itemDetected = true;
 
 
-            if (hit.collider.tag == "Stone")
-            {
-                pickupText.text = "Press E to pick up Stone";
-                pickupText.gameObject.SetActive(true);
-                itemDetected = true;
+            // if (hit.collider.tag == "Stone")
+            // {
+            //     pickupText.text = "Press E to pick up Stone";
+            //     pickupText.gameObject.SetActive(true);
+            //     itemDetected = true;
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    stoneCount++;
-                    if (stoneCount == 1)
-                        InstantiateBall();
-                    Destroy(hit.collider.gameObject);
-                }
+            //     if (Input.GetKeyDown(KeyCode.E))
+            //     {
+            //         stoneCount++;
+            //         if (stoneCount == 1)
+            //             InstantiateBall();
+            //         Destroy(hit.collider.gameObject);
+            //     }
 
-            }
+            // }
 
 
-            else if (hit.collider.tag == "Katana Drop")
+            if (hit.collider.tag == "Katana Drop")
             {
                 pickupText.text = "Press E to pick up Katana";
                 pickupText.gameObject.SetActive(true);

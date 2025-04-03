@@ -13,7 +13,7 @@ public class SoulBall : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
         {
-            if (hit.tag == "EnemyAttack")
+            if (hit.CompareTag("EnemyAttack"))
             {
                 AiAgent agent = hit.GetComponent<AiAgent>();
                 StunnedState ss = hit.GetComponent<StunnedState>();

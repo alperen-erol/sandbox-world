@@ -5551,7 +5551,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 719
+  m_VersionIndex: 746
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -5907,9 +5907,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.84
-  m_Height: 1.9691474
+  m_Height: 2.0042417
   m_Direction: 1
-  m_Center: {x: 0, y: -0.015426278, z: 0}
+  m_Center: {x: 0, y: -0.03297341, z: 0}
 --- !u!195 &6803502599567833731
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6048,8 +6048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 7
-  chaseSpeed: 3
-  attackSpeed: 4
+  chaseSpeed: 20
+  attackSpeed: 2
 --- !u!114 &8813475968121244831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6119,13 +6119,13 @@ MonoBehaviour:
     triggerAllowedTags: []
     triggerKey: 0
   fractureOptions:
-    fragmentCount: 15
+    fragmentCount: 12
     xAxis: 1
     yAxis: 1
     zAxis: 1
     detectFloatingFragments: 0
     asynchronous: 0
-    insideMaterial: {fileID: 0}
+    insideMaterial: {fileID: 2100000, guid: fdc1a77a31740664e991c402c2a276e5, type: 2}
     textureScale: {x: 1, y: 1}
     textureOffset: {x: 0, y: 0}
   refractureOptions:
@@ -6388,7 +6388,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 719
+  m_VersionIndex: 746
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
