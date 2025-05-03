@@ -10,6 +10,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] TMP_Text healthText;
 
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ShotgunAmmo"))
+        {
+            ShotgunManager.Instance.ammoCount += 3;
+            Destroy(other.gameObject);
+        }
+    }
+
+
     void Update()
     {
         if (health <= 0)

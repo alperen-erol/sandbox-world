@@ -70,12 +70,26 @@ public class EnemySpawner : MonoBehaviour
 
         Debug.Log("Starting Round " + currentRound + " with " + enemiesToSpawn + " enemies");
 
-        for (int i = 0; i < enemiesToSpawn; i++)
+        StartCoroutine(SpawnEnemiesWithDelay(enemiesToSpawn));
+
+        enemiesRemaining = activeEnemies.Count;
+    }
+
+    private IEnumerator SpawnEnemiesWithDelay(int count)
+    {
+        
+        for (int i = 0; i < count; i++)
         {
             SpawnEnemy();
+            yield return new WaitForSeconds(1f);
         }
 
         enemiesRemaining = activeEnemies.Count;
+    }
+
+    IEnumerator wait1s()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
     private void SpawnEnemy()

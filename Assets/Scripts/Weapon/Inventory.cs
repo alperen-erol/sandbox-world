@@ -17,7 +17,9 @@ public class Inventory : MonoBehaviour
     public GameObject Wand;
     public GameObject CameraHolder;
     public GameObject hammer;
+    public GameObject player;
     Hammer hammerScript;
+
     private GameObject heldItem;
     private FixedJoint itemJoint;
     public TMP_Text pickupText;
@@ -30,6 +32,8 @@ public class Inventory : MonoBehaviour
     public float springMinDistance;
     public float springMaxDistance;
     [SerializeField] float throwPropForce;
+    [SerializeField] float pickUpRange;
+    [SerializeField] LayerMask shotgunShell;
 
     public bool playerHasBalls = false;
     public bool itemDetected = false;
@@ -38,8 +42,6 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-
-
         hammerScript = hammer.GetComponent<Hammer>();
     }
 
@@ -109,6 +111,8 @@ public class Inventory : MonoBehaviour
         Slot4.SetActive(true);
         currentActiveSlot = 4;
     }
+
+    
 
 
     private void HandleItemDrop()

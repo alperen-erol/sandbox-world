@@ -1,0 +1,17 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Button.uss?fileID=7433441132597879392&amp;guid=c51d717a7e3937a46b1c185dcea2ae09&amp;type=3#Button" />
+    <engine:VisualElement name="MainMenu" style="flex-grow: 1; align-items: flex-end; justify-content: space-between; align-self: auto; opacity: 1; width: 100%; height: 100%; flex-direction: row; background-image: url(&quot;project://database/Assets/Imported%20Assets/Fantasy%20Skybox%20FREE/Panoramics/FS013/FS013_Night.png?fileID=2800000&amp;guid=134608dbb5b4b3e458e3567b13281134&amp;type=3#FS013_Night&quot;); -unity-background-image-tint-color: rgb(255, 255, 255); visibility: visible;">
+        <engine:VisualElement name="MainMenu" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); top: auto; position: relative; width: 100px; height: 50%; align-items: center; justify-content: space-evenly; align-content: center; align-self: flex-end;">
+            <engine:Button text="Play&#10;" name="PlayButton" class="button" style="-unity-font-definition: url(&quot;project://database/Packages/com.unity.cinemachine/Runtime/Debug/CinemachineRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=df9aec944f4474a04847b6d6375e4138&amp;type=3#NotInter-Regular&quot;);" />
+            <engine:Button text="Characters" name="CharacterButton" class="button" />
+            <engine:Button text="Exit&#10;" name="ExitButton" class="button unity-button" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+    <engine:VisualElement name="CharacterMenu" class="hide" style="flex-grow: 1; align-items: flex-end; justify-content: space-between; align-self: auto; opacity: 1; width: 100%; height: 100%; flex-direction: row; background-image: url(&quot;project://database/Assets/Imported%20Assets/Fantasy%20Skybox%20FREE/Panoramics/FS013/FS013_Night.png?fileID=2800000&amp;guid=134608dbb5b4b3e458e3567b13281134&amp;type=3#FS013_Night&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);">
+        <engine:VisualElement name="MainMenu" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); top: auto; position: relative; width: 100px; height: 50%; align-items: center; justify-content: space-evenly; align-content: center; align-self: flex-end;">
+            <engine:Button text="Warrior" name="WarriorClass" class="button" style="-unity-font-definition: url(&quot;project://database/Packages/com.unity.cinemachine/Runtime/Debug/CinemachineRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=df9aec944f4474a04847b6d6375e4138&amp;type=3#NotInter-Regular&quot;);" />
+            <engine:Button text="uzakciadam" name="RangeClass" class="button" />
+            <engine:Button text="Mage" name="MageClass" class="button" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

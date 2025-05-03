@@ -116,7 +116,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         if (grounded && !activeGrapple)
             rb.linearDamping = groundDrag;
         else
-            rb.linearDamping = 0;
+            rb.linearDamping = airDrag;
 
         if (ps.speed < coroutineStopLimit && grounded)
         {

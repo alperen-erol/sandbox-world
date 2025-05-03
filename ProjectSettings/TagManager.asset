@@ -23,6 +23,7 @@ TagManager:
   - TITAN
   - Wand
   - BuyButton
+  - ShotgunAmmo
   layers:
   - Default
   - TransparentFX

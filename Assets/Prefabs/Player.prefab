@@ -98,9 +98,9 @@ MonoBehaviour:
   slopeIncreaseMultiplier: 1.5
   groundDrag: 4
   airDrag: 0
-  jumpForce: 14
+  jumpForce: 11
   jumpCooldown: 0.15
-  airMultiplier: 1
+  airMultiplier: 0.2
   crouchSpeed: 4
   crouchYScale: 0.5
   jumpKey: 32
@@ -242,7 +242,7 @@ MonoBehaviour:
   whatIsGrappleable:
     serializedVersion: 2
     m_Bits: 64
-  pm: {fileID: 0}
+  pm: {fileID: 6906160752191021158}
   maxSwingDistance: 50
   spring: 3
   damper: 15
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
-  baseFOV: 50
+  baseFOV: 70
   lerpSpeed: 3
   finalFov: 0
 --- !u!82 &6304236714637275088

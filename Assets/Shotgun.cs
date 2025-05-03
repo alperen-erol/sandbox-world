@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class Shotgun : MonoBehaviour
@@ -12,6 +13,10 @@ public class Shotgun : MonoBehaviour
     [SerializeField] AudioClip cock;
     [SerializeField] AudioClip cock2;
     [SerializeField] AudioClip shoot;
+    [SerializeField] int shootOrder = 1;
+    [SerializeField] bool canShoot = false;
+    [SerializeField] GameObject shotgunFire;
+
 
     Animator anim;
 
@@ -38,20 +43,57 @@ public class Shotgun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canShoot && ShotgunManager.Instance.ammoCount > 0)
         {
-            anim.SetTrigger("Shoot");
+            if (shootOrder == 1)
+            {
+                anim.SetTrigger("Shoot1");
+                Instantiate(shotgunFire, gunTip.position, Quaternion.identity);
+            }
+            else if (shootOrder == 2)
+            {
+                anim.SetTrigger("Shoot2");
+                Instantiate(shotgunFire, gunTip.position, Quaternion.identity);
+            }
         }
+    }
+
+
+    public void ShootFirstTime()
+    {
+        shootOrder = 2;
+    }
+
+    public void ShootSecondTime()
+    {
+        shootOrder = 1;
+    }
+
+    public void EnableShoot()
+    {
+        canShoot = true;
+    }
+
+    public void DisableShoot()
+    {
+        canShoot = false;
     }
 
     public void ShotgunFired()
     {
-        FireShotgun(transform.forward);
+        FireShotgun(Camera.main.transform.forward);
     }
 
 
     public void FireShotgun(Vector3 direction)
     {
+        ShotgunManager.Instance.ammoCount--;
+        if (ShotgunManager.Instance.ammoCount < 0)
+        {
+            ShotgunManager.Instance.ammoCount = 0;
+            canShoot = false;
+            return;
+        }
         Debug.Log("firing shotung");
         // Ensure direction is normalized
         direction = direction.normalized;

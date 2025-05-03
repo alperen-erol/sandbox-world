@@ -80,6 +80,7 @@ public class Fracture : MonoBehaviour
             if (fragmentRoot == null)
             {
                 fragmentRoot = new GameObject($"{name}Fragments");
+                fragmentRoot.AddComponent<EnemyPieceDeleter>();
                 fragmentRoot.transform.SetParent(transform.parent);
                 fragmentRoot.transform.position = transform.position;
                 fragmentRoot.transform.rotation = transform.rotation;

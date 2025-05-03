@@ -1,0 +1,15 @@
+.button {
+    width: 560px;
+    height: 130px;
+    font-size: 91px;
+}
+
+.hide {
+    display: none;
+    opacity: 1;
+}
+
+.hide {
+    display: none;
+    opacity: 1;
+}
